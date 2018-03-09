@@ -17,7 +17,7 @@
                     <ul class="sub-menu">
                         @foreach ($Webpage->mainmenu as $mainmenu)
                         <li class="nav-item  ">
-                            <a href="{{ $mainmenu->route}}" class="nav-link ">
+                            <a href="{{ AppHelper::parseDomain($mainmenu->route)}}" class="nav-link ">
                                 <span class="title">{{ $mainmenu->nama}}</span>
                             </a>
                         </li>
