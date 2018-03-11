@@ -5,9 +5,10 @@
                  <div class="sidebar-toggler">
                     <span></span>
                 </div>
-            </li>                                     
-            @foreach ($Webpages as $Webpage)
-                <li class="nav-item">
+            </li>     
+              
+            @foreach ($datas['Webpages'] as $Webpage)
+                 <li class="nav-item">
                     <a href="" class="nav-link nav-toggle">
                         <i class="{{ $Webpage->icon}}"></i>
                         <span class="title">{{ $Webpage->nama}}</span>                       
@@ -24,7 +25,7 @@
                         @endforeach      
                     </ul>
                     @endif
-                </li>                
+                </li>                     
             @endforeach                
         </ul>    
     </div>  
