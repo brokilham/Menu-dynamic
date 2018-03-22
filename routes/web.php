@@ -19,10 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-/*Route::namespace('Setting')->group(function () {
-    Page_Management
-    // Controllers Within The "App\Http\Controllers\Admin" Namespace
-});*/
-
-//
+Route::group(['prefix' => 'master_privilages'],function()
+{
+    Route::get('/main_master','Webpages_Settings\SettingsController@index');
+    Route::get('/getall_mstr_privilages','Webpages_Settings\SettingsController@getall_mstr_privilages');
+    Route::post('/create','Webpages_Settings\SettingsController@create');
+    Route::post('/update','Webpages_Settings\SettingsController@update');
+    Route::post('/delete','Webpages_Settings\SettingsController@delete');
+});

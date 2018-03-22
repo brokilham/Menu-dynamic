@@ -13,7 +13,6 @@ var App = function() {
 
     var assetsPath = '../assets/';
 
-    //var globalImgPath = 'backend/global/img/';
     var globalImgPath = 'global/img/';
 
     var globalPluginsPath = 'global/plugins/';

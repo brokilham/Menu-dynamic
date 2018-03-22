@@ -35,68 +35,64 @@ var FormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
                     //account
-                     textBoxPasswordSiswa:{
-                        minlength: 1,
+                    username: {
+                        minlength: 5,
                         required: true
                     },
-                     textBoxPasswordConfirmSiswa:{
-                        minlength: 1,
+                    password: {
+                        minlength: 5,
                         required: true
                     },
-                     textBoxFotoSiswa:{
-                        minlength: 1,
+                    rpassword: {
+                        minlength: 5,
+                        required: true,
+                        equalTo: "#submit_form_password"
+                    },
+                    //profile
+                    fullname: {
                         required: true
                     },
-                    textBoxEmailSiswa:
-                    {
-                        minlength: 1,
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    phone: {
                         required: true
                     },
-                    textBoxIdSiswa: {
+                    gender: {
+                        required: true
+                    },
+                    address: {
+                        required: true
+                    },
+                    city: {
+                        required: true
+                    },
+                    country: {
+                        required: true
+                    },
+                    //payment
+                    card_name: {
+                        required: true
+                    },
+                    card_number: {
+                        minlength: 16,
+                        maxlength: 16,
+                        required: true
+                    },
+                    card_cvc: {
+                        digits: true,
+                        required: true,
                         minlength: 3,
+                        maxlength: 4
+                    },
+                    card_expiry_date: {
                         required: true
                     },
-                       textBoxNamaSiswa: {
-                        minlength: 1,
-                        required: true
-                    },
-                       textBoxAlamatSiswa: {
-                        minlength: 1,
-                        required: true
-                    },
-                       textBoxKelas: {
-                        minlength: 1,
-                        required: true
-                    },
-                       textBoxRuang: {
-                        minlength: 1,
-                        required: true
-                    },
-                        textBoxIdWaliMurid: {
-                        minlength: 3,
-                        required: true
-                    },
-                        textBoxNamaWaliMurid: {
-                        minlength: 1,
-                        required: true
-                    },
-                        textBoxAlamatWaliMurid: {
-                        minlength: 1,
-                        required: true
-                    },
-                        textBoxPekerWaliMurid: {
-                        minlength: 1,
-                        required: true
-                    },
-                        textBoxNoTelpWm: {
-                        minlength: 1,
-                        required: true
-                    },
-                        gambar: {
-                        minlength: 1,
-                        required: true
+                    'payment[]': {
+                        required: true,
+                        minlength: 1
                     }
-                   
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
@@ -144,11 +140,11 @@ var FormWizard = function () {
                     }
                 },
 
-                /*submitHandler: function (form) {
+                submitHandler: function (form) {
                     success.show();
                     error.hide();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
-                }*/
+                }
 
             });
 
@@ -178,7 +174,7 @@ var FormWizard = function () {
                 var total = navigation.find('li').length;
                 var current = index + 1;
                 // set wizard title
-                $('.step-title', $('#form_wizard_1')).text('Langkah ' + (index + 1) + ' Dari ' + total);
+                $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
                 // set done steps
                 jQuery('li', $('#form_wizard_1')).removeClass("done");
                 var li_list = navigation.find('li');
@@ -192,10 +188,6 @@ var FormWizard = function () {
                     $('#form_wizard_1').find('.button-previous').show();
                 }
 
-                 $('#form_wizard_1').find('.button-next').hide();
-                    $('#form_wizard_1').find('.button-submit').show();
-                      $('#form_wizard_1').find('.button-previous').show();
-                
                 if (current >= total) {
                     $('#form_wizard_1').find('.button-next').hide();
                     $('#form_wizard_1').find('.button-submit').show();
@@ -249,10 +241,9 @@ var FormWizard = function () {
             });
 
             $('#form_wizard_1').find('.button-previous').hide();
-            $('#form_wizard_1').find('.button-submit').hide();
-          /*  $('#form_wizard_1 .button-submit').click(function () {
+            $('#form_wizard_1 .button-submit').click(function () {
                 alert('Finished! Hope you like it :)');
-            }).hide();*/
+            }).hide();
 
             //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
             $('#country_list', form).change(function () {

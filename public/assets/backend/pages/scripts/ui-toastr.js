@@ -4,7 +4,7 @@ var UIToastr = function () {
         //main function to initiate the module
         init: function () {
 
-           /* var i = -1,
+            var i = -1,
                 toastCount = 0,
                 $toastlast,
                 getMessage = function () {
@@ -21,31 +21,66 @@ var UIToastr = function () {
                     }
 
                     return msgs[i];
-                };*/
-var toastCount = 0;
+                };
+
             $('#showtoast').click(function () {
-                
-              
-                var shortCutFunction = "success";  //info, success, warning, Error
-                var title = "sukses";
-                var msg = "ini isi pesannya;"
-               
+                var shortCutFunction = $("#toastTypeGroup input:checked").val();
+                var msg = $('#message').val();
+                var title = $('#title').val() || '';
+                var $showDuration = $('#showDuration');
+                var $hideDuration = $('#hideDuration');
+                var $timeOut = $('#timeOut');
+                var $extendedTimeOut = $('#extendedTimeOut');
+                var $showEasing = $('#showEasing');
+                var $hideEasing = $('#hideEasing');
+                var $showMethod = $('#showMethod');
+                var $hideMethod = $('#hideMethod');
                 var toastIndex = toastCount++;
 
                 toastr.options = {
-                   "closeButton": true,
-                   "debug": false,
-                   "positionClass": "toast-top-right",
-                   "onclick": null,
-                   "showDuration": 500,
-                   "hideDuration": 500,
-                   "timeOut": 5000,
-                   "extendedTimeOut": 1000,
-                   "showEasing": "swing",
-                   "hideEasing": "linear",
-                   "showMethod": "fadeIn",
-                   "hideMethod": "fadeOut"
+                    closeButton: $('#closeButton').prop('checked'),
+                    debug: $('#debugInfo').prop('checked'),
+                    positionClass: $('#positionGroup input:checked').val() || 'toast-top-right',
+                    onclick: null
                 };
+
+                if ($('#addBehaviorOnToastClick').prop('checked')) {
+                    toastr.options.onclick = function () {
+                        alert('You can perform some custom action after a toast goes away');
+                    };
+                }
+
+                if ($showDuration.val().length) {
+                    toastr.options.showDuration = $showDuration.val();
+                }
+
+                if ($hideDuration.val().length) {
+                    toastr.options.hideDuration = $hideDuration.val();
+                }
+
+                if ($timeOut.val().length) {
+                    toastr.options.timeOut = $timeOut.val();
+                }
+
+                if ($extendedTimeOut.val().length) {
+                    toastr.options.extendedTimeOut = $extendedTimeOut.val();
+                }
+
+                if ($showEasing.val().length) {
+                    toastr.options.showEasing = $showEasing.val();
+                }
+
+                if ($hideEasing.val().length) {
+                    toastr.options.hideEasing = $hideEasing.val();
+                }
+
+                if ($showMethod.val().length) {
+                    toastr.options.showMethod = $showMethod.val();
+                }
+
+                if ($hideMethod.val().length) {
+                    toastr.options.hideMethod = $hideMethod.val();
+                }
 
                 if (!msg) {
                     msg = getMessage();
@@ -54,8 +89,8 @@ var toastCount = 0;
                 $("#toastrOptions").text("Command: toastr[" + shortCutFunction + "](\"" + msg + (title ? "\", \"" + title : '') + "\")\n\ntoastr.options = " + JSON.stringify(toastr.options, null, 2));
 
                 var $toast = toastr[shortCutFunction](msg, title); // Wire up an event handler to a button in the toast, if it exists
-                //$toastlast = $toast;
-                /*if ($toast.find('#okBtn').length) {
+                $toastlast = $toast;
+                if ($toast.find('#okBtn').length) {
                     $toast.delegate('#okBtn', 'click', function () {
                         alert('you clicked me. i was toast #' + toastIndex + '. goodbye!');
                         $toast.remove();
@@ -65,16 +100,15 @@ var toastCount = 0;
                     $toast.delegate('#surpriseBtn', 'click', function () {
                         alert('Surprise! you clicked me. i was toast #' + toastIndex + '. You could perform an action here.');
                     });
-                }*/
+                }
 
-                /*$('#clearlasttoast').click(function () {
+                $('#clearlasttoast').click(function () {
                     toastr.clear($toastlast);
-                });*/
+                });
             });
-           
-            /*$('#cleartoasts').click(function () {
+            $('#cleartoasts').click(function () {
                 toastr.clear();
-            });*/
+            });
 
         }
 
