@@ -111,6 +111,10 @@
 
         <!-- BEGIN PROCESS SCRIPT -->
         <script src="{{URL::asset('/assets/backend/js/master_privilages.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/master_kelas.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/master_jabatan.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/js/master_guru.js')}}" type="text/javascript"></script>  
+        <script src="{{URL::asset('/assets/backend/js/master_siswa.js')}}" type="text/javascript"></script> 
         <!-- END PROCESS SCRIPT -->
 
 
