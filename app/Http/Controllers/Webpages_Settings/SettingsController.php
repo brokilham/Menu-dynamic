@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Webpages_Settings;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mstr_privilages;
+use auth;
 use DataTables;
 use Exception;
 
@@ -33,11 +34,12 @@ class SettingsController extends Controller
       
         try
         {
-          
+           
             $mstr_privilages = new mstr_privilages;
             $mstr_privilages->name = $request->txt_name;
-            $mstr_privilages->created_by = "AGUNG";
-            $mstr_privilages->status = $request->txt_status;  
+            $mstr_privilages->created_by =  Auth::user()->id;
+            //$mstr_privilages->status = $request->txt_status;
+            $mstr_privilages->status = "active";  
             $mstr_privilages->save();
             
             $result = ($mstr_privilages == TRUE)? "S":"F";
@@ -84,6 +86,11 @@ class SettingsController extends Controller
 
     public function getall_mstr_privilages(){
         $mstr_privilages = mstr_privilages::where('status', 'active');
+
+        /*$mstr_privilages = mstr_privilages::where('u_id', '=', $userid)
+            ->where('status', '=', 'active')
+            ->select('id', 'name', 'created_at', 'updated_at', 'created_by', 'status')
+            ->get();*/ 
 
         return DataTables::of($mstr_privilages)->make(true);
     }
