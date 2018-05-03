@@ -95,6 +95,11 @@
         <script src="{{URL::asset('/assets/backend/global/scripts/datatable.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/global/plugins/datatables/datatables.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/jquery-validation/js/jquery.validate.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/jquery-validation/js/additional-methods.min.js')}}" type="text/javascript"></script>
+        
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/global/scripts/app.min.js')}}" type="text/javascript"></script>
@@ -102,6 +107,7 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/pages/scripts/dashboard.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/pages/scripts/table-datatables-managed.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/pages/scripts/form-wizard.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>

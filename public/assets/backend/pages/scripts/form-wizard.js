@@ -24,7 +24,7 @@ var FormWizard = function () {
                 }
             });
 
-            var form = $('#submit_form');
+            var form = $('#frm-add-mstr-siswa');
             var error = $('.alert-danger', form);
             var success = $('.alert-success', form);
 
@@ -34,8 +34,34 @@ var FormWizard = function () {
                 errorClass: 'help-block help-block-error', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
+
+                    txt_nis: {
+                        minlength: 5,
+                        required: true
+                    },
+                    txt_nama: {
+                        minlength: 5,
+                        required: true
+                    },
+                    txt_jenis_kelamin: {
+                        minlength: 1,
+                        required: true
+                    },
+                    txt_path_foto: {
+                        minlength: 5,
+                        required: true
+                    },
+                    txt_alamat: {
+                        minlength: 5,
+                        required: true
+                    },
+                    txt_hobi: {
+                        minlength: 5,
+                        required: true
+                    },
+                    
                     //account
-                    username: {
+                    /*username: {
                         minlength: 5,
                         required: true
                     },
@@ -47,9 +73,9 @@ var FormWizard = function () {
                         minlength: 5,
                         required: true,
                         equalTo: "#submit_form_password"
-                    },
+                    },*/
                     //profile
-                    fullname: {
+                    /*fullname: {
                         required: true
                     },
                     email: {
@@ -92,7 +118,7 @@ var FormWizard = function () {
                     'payment[]': {
                         required: true,
                         minlength: 1
-                    }
+                    }*/
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
@@ -241,9 +267,10 @@ var FormWizard = function () {
             });
 
             $('#form_wizard_1').find('.button-previous').hide();
-            $('#form_wizard_1 .button-submit').click(function () {
+            $('#form_wizard_1').find('.button-submit').hide();
+            /*$('#form_wizard_1 .button-submit').click(function () {
                 alert('Finished! Hope you like it :)');
-            }).hide();
+            }).hide();*/
 
             //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.
             $('#country_list', form).change(function () {

@@ -54,3 +54,14 @@ Route::group(['prefix' => 'master_guru'],function()
     Route::post('/update','Webpages_Master_Data\GuruController@update');
     Route::post('/delete','Webpages_Master_Data\GuruController@delete');
 });
+
+Route::group(['prefix' => 'master_siswa'],function()
+{
+    Route::get('/main_master','Webpages_Master_Data\SiswaController@index');
+    Route::get('/getall_mstr_siswa','Webpages_Master_Data\SiswaController@getall_mstr_siswa');
+    Route::get('/get_detail_mstr_siswa/{IdSiswa}','Webpages_Master_Data\SiswaController@get_detail_mstr_siswa');
+    Route::get('/get_detail_mstr_walimurid','Webpages_Master_Data\SiswaController@get_detail_mstr_walimurid');
+    Route::post('/create','Webpages_Master_Data\SiswaController@create');
+    Route::post('/update','Webpages_Master_Data\SiswaController@update');
+    Route::post('/delete','Webpages_Master_Data\SiswaController@delete');
+});
