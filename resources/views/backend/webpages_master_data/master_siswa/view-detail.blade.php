@@ -21,7 +21,7 @@
             <li class="active">
                 <a href="#tab_1_1" data-toggle="tab"> Detail </a>
             </li>
-            <li>
+            <li style="display:none">
                 <a href="#tab_1_3" data-toggle="tab"> Update </a>
             </li>       
         </ul>
@@ -233,7 +233,7 @@
                 </div>
             </div>
             <!--tab_1_2-->
-            <div class="tab-pane" id="tab_1_3">
+            <div class="tab-pane" id="tab_1_3" style="display:none">
                 <div class="row profile-account">
                     <div class="col-md-3">
                         <ul class="ver-inline-menu tabbable margin-bottom-10">

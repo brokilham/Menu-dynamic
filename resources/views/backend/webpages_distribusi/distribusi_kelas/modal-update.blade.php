@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade modal-scroll" id="modal-update"  name="modal-update" tabindex="-1" data-replace="true">
+<div class="modal fade modal-scroll" id="modal-update" tabindex="-1" data-replace="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

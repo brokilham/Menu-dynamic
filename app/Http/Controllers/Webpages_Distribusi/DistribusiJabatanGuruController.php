@@ -1,30 +1,30 @@
 <?php
-namespace App\Http\Controllers\Webpages_Master_Data;
+namespace App\Http\Controllers\Webpages_Distribusi;
 use App\Http\Controllers\Controller;
-use App\mstr_siswa;
-use App\mstr_walimurid;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use auth;
-use DataTables;
-use Exception;
+use App\mstr_jabatan;
+use App\mstr_guru;
 
-
-class SiswaController extends Controller
+class DistribusiJabatanGuruController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     public function index()
     {
-        return view('backend.webpages_master_data.master_siswa.main');
+        return view('backend.webpages_distribusi.distribusi_jabatan.main');
     }
 
+    public function get_select_option_guru_jabatan(){
+  
+        //$list_guru = mstr_guru::where('status', 'active');
+        //$list_jabatan = mstr_jabatan::where('status', 'active');
+        $list_guru = mstr_guru::ALL();
+        $list_jabatan = mstr_jabatan::ALL();
+        return response()->json(['list_guru' => $list_guru, 'list_jabatan' =>$list_jabatan] );
+        
+    }
+
+
     public function create(Request $request){
-        DB::beginTransaction();
+       /* DB::beginTransaction();
     
        try
         {
@@ -66,52 +66,21 @@ class SiswaController extends Controller
         }
 
         DB::commit();                 
-        return response()->json(['code' => $result, 'message' =>$message] );
+        return response()->json(['code' => $result, 'message' =>$message] );*/
     }
 
     public function update(Request $request){
-        /*try{
-           
-            $return =   mstr_siswa::where('id', $request->txt_id_updt)->update(['kelas' => $request->txt_kelas_updt,'ruang' => $request->txt_ruang_updt]);
-            $result = ($return == 1)? "S":"F";
-            $message = "-";
-          }
-          catch(Exception $e){
-              $result = "E";
-              $message = $e->getMessage();
-          }
-              
-          return response()->json(['code' =>  $result, 'message' =>$message] );*/
+      
     }
 
     public function delete(Request $request){
-     /*   try{
-           
-          $return =   mstr_siswa::where('id', $request->id)->update(['status' => 'non_active']);
-          $result = ($return == 1)? "S":"F";
-          $message = "-";
-        }
-        catch(Exception $e){
-            $result = "E";
-            $message = $e->getMessage();
-        }
-
-        return response()->json(['code' =>  $result, 'message' =>$message] );*/
+   
     }
 
     public function getall_mstr_siswa(){
         
-        $mstr_siswa = mstr_siswa::where('status', 'active');
+        //$mstr_siswa = mstr_siswa::where('status', 'active');
 
-        return DataTables::of($mstr_siswa)->make(true);
+        //return DataTables::of($mstr_siswa)->make(true);
     }
-
-    public function get_detail_mstr_siswa($IdSiswa){
-        $mstr_siswa = mstr_siswa::where('status', 'active')->where('id', $IdSiswa)->first();;
-        return view('backend.webpages_master_data.master_siswa.view-detail')->with( 'datas',$mstr_siswa);
-        
-        /*$mstr_siswa = mstr_siswa::where('status', 'active')->where('id', $IdSiswa)->get();
-        return view('backend.webpages_master_data.master_siswa.view-detail')->with( 'datas', ['mstr_siswa' => $mstr_siswa]);  */    
-    }
-
 }
