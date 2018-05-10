@@ -67,9 +67,31 @@ Route::group(['prefix' => 'master_siswa'],function()
 
 Route::group(['prefix' => 'distribusi_jabatan'],function()
 {
-    Route::get('/main_distribusi','Webpages_Distribusi\DistribusiJabatanGuruController@index');
+    Route::get('/main_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@index');
     Route::get('/get_select_option_guru_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@get_select_option_guru_jabatan');   
+    Route::get('/getall_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@getall_distribusi_jabatan');     
     Route::post('/create','Webpages_Distribusi\DistribusiJabatanGuruController@create');
     Route::post('/update','Webpages_Distribusi\DistribusiJabatanGuruController@update');
     Route::post('/delete','Webpages_Distribusi\DistribusiJabatanGuruController@delete');
+});
+
+
+Route::group(['prefix' => 'distribusi_walikelas'],function()
+{
+    Route::get('/main_distribusi_walikelas','Webpages_Distribusi\DistribusiWalikelasController@index');
+    //Route::get('/get_select_option_guru_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@get_select_option_guru_jabatan');   
+    //Route::get('/getall_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@getall_distribusi_jabatan');     
+    Route::post('/create','Webpages_Distribusi\DistribusiWalikelasController@create');
+    Route::post('/update','Webpages_Distribusi\DistribusiWalikelasController@update');
+    Route::post('/delete','Webpages_Distribusi\DistribusiWalikelasController@delete');
+});
+
+Route::group(['prefix' => 'distribusi_kelas'],function()
+{                                                           
+    Route::get('/main_distribusi_kelas','Webpages_Distribusi\DistribusiKelasSiswaController@index');
+    //Route::get('/get_select_option_guru_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@get_select_option_guru_jabatan');   
+    //Route::get('/getall_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@getall_distribusi_jabatan');     
+    Route::post('/create','Webpages_Distribusi\DistribusiKelasSiswaController@create');
+    Route::post('/update','Webpages_Distribusi\DistribusiKelasSiswaController@update');
+    Route::post('/delete','Webpages_Distribusi\DistribusiKelasSiswaController@delete');
 });
