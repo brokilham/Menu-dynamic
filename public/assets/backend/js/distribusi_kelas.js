@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
     // begin add section ==========================================
-    $("#call-modal-add-distribusi-jabatan").click(function(){
-    
+    $("#call-modal-add-distribusi-kelas").click(function(){
+       // alert("tes");   
+       $('#modal-add-distribusi-kelas').modal('show');
+       /*
        $.ajax({          
             type:'GET',
             url:'./get_select_option_guru_jabatan',
@@ -37,11 +39,11 @@ $(document).ready(function(){
             error: function(data)
             {alert(data.responseText);}
         
-        });  
+        });  */
 
     });
 
-    
+    /*
     $("#btn-submit-distribusi-jabatan").click(function(){
         $.ajax({
             type:"POST",
@@ -63,19 +65,20 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    }); 
+    }); */
     // end add section ============================================
 
     // begin update section ==========================================
+    /*
     $("#dt_distribusi_jabatan").on("click", "#anchor_update", function(){
         var param = $(this).attr('value').split('|');
-       /* $('#txt_id_updt').val(param[0]);  
+        $('#txt_id_updt').val(param[0]);  
         $('#txt_nama_updt').val(param[1]);
         $('#txt_alamat_updt').val(param[2]);  
         $('#txt_no_telp_updt').val(param[3]);
         $('#txt_email_updt').val(param[4]);  
-        $('#modal-update').modal('show');*/
-    });
+        $('#modal-update').modal('show');
+    });*/
 
 
     /*$("#btn-update-mstr-guru").click(function(){
@@ -103,6 +106,7 @@ $(document).ready(function(){
     // end update section ============================================
 
     // begin delete section ==========================================
+    /*
     $("#dt_distribusi_jabatan").on("click", "#anchor_delete", function(){
         
         $.ajax({
@@ -121,10 +125,11 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    })
+    })*/
     // end delete section ============================================
 
      // begin datatable section ==========================================
+     /*
      var table = $("#dt_distribusi_jabatan").DataTable({
         processing: true,
         serverSide: true,
@@ -180,7 +185,7 @@ $(document).ready(function(){
                 }
             } ],
         order: [[ 1, 'asc' ]],
-    }).draw();
+    }).draw();*/
   
     // end datatable section ============================================
 });
