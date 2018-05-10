@@ -27,7 +27,7 @@
             <div class="portlet-title">
                 <div class="caption font-dark">
                     <i class="icon-settings font-dark"></i>
-                    <span class="caption-subject bold uppercase"> Distribusi Jabatan</span>
+                    <span class="caption-subject bold uppercase"> Distribusi Walikelas</span>
                 </div>              
             </div>
             <div class="portlet-body">
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add" class="btn sbold green" data-toggle="modal"> Add New
+                                <button id="call-modal-add-distribusi-walikelas" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -63,14 +63,13 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_master_guru">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_kelas">
                     <thead>
                         <tr>                           
                             <th>Id</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No Telp</th>
-                            <th>Email</th>
+                            <th>Kelas</th>
+                            <th>Ruang</th>
                             <th>Created Date</th>
                             <th>Updated Date</th>                            
                             <th>Created By</th>  
