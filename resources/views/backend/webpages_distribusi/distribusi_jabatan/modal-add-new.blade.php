@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Pilih jabatan untuk guru</h4>
             </div>
             <div class="modal-body">
-                <form id = "frm-add-mstr-guru" class="form-horizontal" role="form" method="POST">
+                <form id = "frm-add-distribusi-jabatan" class="form-horizontal" role="form" method="POST">
                     <div class="form-body">
                         <div class="form-group">
                             <label class="col-md-2 control-label"> Nama Guru</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
-                <button type="button" class="btn green" id="btn-submit-mstr-guru" value=''>Save</button>  
+                <button type="button" class="btn green" id="btn-submit-distribusi-jabatan" value=''>Save</button>  
             </div>
         </div>
     </div>

@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add" class="btn sbold green" data-toggle="modal"> Add New
+                                <button id="call-modal-add-distribusi-jabatan" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -65,12 +65,20 @@
                 </div>
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_jabatan">
                     <thead>
-                        <tr>                           
+                        <tr>  
+                            <!--                         
+                            <th>Id</th>
+                            <th>Id Guru</th>
+                            <th>Id Jabatan</th>                     
+                            <th>Created Date</th>
+                            <th>Updated Date</th>                            
+                            <th>Created By</th>  
+                            <th>Status</th>  
+                            <th>Actions</th>
+                            -->
                             <th>Id</th>
                             <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No Telp</th>
-                            <th>Email</th>
+                            <th>Jabatan</th>                     
                             <th>Created Date</th>
                             <th>Updated Date</th>                            
                             <th>Created By</th>  
@@ -86,7 +94,9 @@
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>  
-@include('backend.webpages_distribusi.distribusi_jabatan.modal-add') 
+<!-- tidak menggunakan ini karen muncul tes 1 di select padahal udah di hapus-->
+<!-- 'backend.webpages_distribusi.distribusi_jabatan.modal-add'-->
+@include('backend.webpages_distribusi.distribusi_jabatan.modal-add-new') 
 @include('backend.webpages_distribusi.distribusi_jabatan.modal-update') 
 @endsection
 
