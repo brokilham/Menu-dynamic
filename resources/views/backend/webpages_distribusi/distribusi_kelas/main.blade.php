@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
-                                <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                <button style="display:none" class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right">
@@ -63,6 +63,8 @@
                         </div>
                     </div>
                 </div>
+       
+                  
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_kelas">
                     <thead>
                         <tr>                           
@@ -74,8 +76,20 @@
                             <th>Updated Date</th>                            
                             <th>Created By</th>  
                             <th>Status</th>  
+                            <th>Actions</th>                            
+                        </tr>
+                        <!--
+                        <tr>
+                            <th>Id</th>
+                            <th>Id Siswa</th>
+                            <th>Id Kelas</th>
+                            <th>Created Date</th>
+                            <th>Updated Date</th>                            
+                            <th>Created By</th>  
+                            <th>Status</th>  
                             <th>Actions</th>
                         </tr>
+                        -->                      
                     </thead>
                     <tbody>                                                                                                                             
                    </tbody>

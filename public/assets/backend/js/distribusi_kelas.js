@@ -2,53 +2,94 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-kelas").click(function(){
-       // alert("tes");   
-       $('#modal-add-distribusi-kelas').modal('show');
-       /*
-       $.ajax({          
-            type:'GET',
-            url:'./get_select_option_guru_jabatan',
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
-            success: function(data)
-            {
-                     
-               if(data.list_guru.length > 0 && data.list_jabatan.length > 0){
+       if($('#slc_nama_siswa option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_siswa_kelas',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {                        
+                    if(data.list_siswa.length > 0 && data.list_kelas.length > 0){
 
-                var DatalistguruRaw,DatalistguruJson;
-                
-                for (i = 0; i < data.list_guru.length; i++){ 
-                    DatalistguruRaw = JSON.stringify(data.list_guru[i]);
-                    DatalistguruJson = JSON.parse(DatalistguruRaw);
-                
-                    $('#slc_nama_guru').append('<option value = "'+DatalistguruJson.id+'">'+DatalistguruJson.nama+''+'</option>');                   
-                }
+                        var DatalistSiswaRaw,DatalistSiswaJson;                     
+                        for (i = 0; i < data.list_siswa.length; i++){ 
+                            DatalistSiswaRaw = JSON.stringify(data.list_siswa[i]);
+                            DatalistSiswaJson = JSON.parse(DatalistSiswaRaw);
+                            if(DatalistSiswaJson.t_distribusi_kelas == null || DatalistSiswaJson.t_distribusi_kelas.status == 'non_active'){
+                                $('#slc_nama_siswa').append('<option value = "'+DatalistSiswaJson.id+'">'+DatalistSiswaJson.nama+''+'</option>');                   
+                            }
+                        }
 
-                var DatalistJabatanRaw,DatalistJabatanJson;
-                for (i = 0; i < data.list_jabatan.length; i++){ 
-                    DatalistJabatanRaw = JSON.stringify(data.list_jabatan[i]);
-                    DatalistJabatanJson = JSON.parse(DatalistJabatanRaw);
-                
-                    $('#slc_jabatan').append('<option value = "'+DatalistJabatanJson.id+'" >'+DatalistJabatanJson.nama+''+'</option>');                   
+                        if($('#slc_kelas option').length < 1){
+                            var DatalistKelasRaw,DatalistKelasJson;
+                            for (i = 0; i < data.list_kelas.length; i++){ 
+                                DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
+                                DatalistKelasJson = JSON.parse(DatalistKelasRaw);
+                            
+                                $('#slc_kelas').append('<option value = "'+DatalistKelasJson.id+'" >'+DatalistKelasJson.kelas+''+DatalistKelasJson.ruang+'</option>');                   
+                            }
+                        }                    
+                        
+                        $('#modal-add-distribusi-kelas').modal('show');
+
+                        if(($('#slc_nama_siswa option').length < 1)||($('#slc_kelas option').length < 1)){
+                            $('#btn-submit-distribusi-kelas').prop('disabled', true);
+                        }
+                            else{
+                            $('#btn-submit-distribusi-kelas').prop('disabled', false);
+                        }
+                    }
+                    /*else{
+                        alert("Data master & kelas kosong !!!");     
+                    } */
+                },
+                error: function(data)
+                {
+                    alert(data.responseText);
                 }
-                
-                $('#modal-add-distribusi-jabatan').modal('show');
-               }else{
-                alert("Data master jabatan kosong !!!");     
-               } 
-            },
-            error: function(data)
-            {alert(data.responseText);}
-        
-        });  */
+            
+            });     
+       }
+       else{
+            $('#modal-add-distribusi-kelas').modal('show');
+         
+            if(($('#slc_nama_siswa option').length < 1)||($('#slc_kelas option').length < 1)){
+                $('#btn-submit-distribusi-kelas').prop('disabled', true);
+            }
+                else{
+                $('#btn-submit-distribusi-kelas').prop('disabled', false);
+            }
+       }
+
+       
 
     });
+    
+    /*$("#call-modal-add-distribusi-kelas").click(function(){
+        // alert("tes");   
+             
+        $.ajax({          
+             type:'GET',
+             url:'./getall_distribusi_kelas2',
+             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+             success: function(data)
+             {
+                 console.log(data);
+                      
+               
+             },
+             error: function(data)
+             {alert(data.responseText);}
+         
+         });  
+ 
+     });*/
 
-    /*
-    $("#btn-submit-distribusi-jabatan").click(function(){
+    $("#btn-submit-distribusi-kelas").click(function(){
         $.ajax({
             type:"POST",
             url:'./create',
-            data:$('#frm-add-distribusi-jabatan').serialize(),
+            data:$('#frm-add-distribusi-kelas').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
             success: function(data){      
@@ -65,28 +106,59 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    }); */
+    }); 
     // end add section ============================================
 
     // begin update section ==========================================
-    /*
-    $("#dt_distribusi_jabatan").on("click", "#anchor_update", function(){
+   
+    $("#dt_distribusi_kelas").on("click", "#anchor_update", function(){
+        
         var param = $(this).attr('value').split('|');
-        $('#txt_id_updt').val(param[0]);  
-        $('#txt_nama_updt').val(param[1]);
-        $('#txt_alamat_updt').val(param[2]);  
-        $('#txt_no_telp_updt').val(param[3]);
-        $('#txt_email_updt').val(param[4]);  
-        $('#modal-update').modal('show');
-    });*/
+
+        if($('#slc_kelas_updt option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_kelas_single',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {           
+                           
+                    if( data.list_kelas.length > 0){
+                        var DatalistKelasRaw,DatalistKelasJson;
+                        for (i = 0; i < data.list_kelas.length; i++){ 
+                            DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
+                            DatalistKelasJson = JSON.parse(DatalistKelasRaw);
+                        
+                            $('#slc_kelas_updt').append('<option value = "'+DatalistKelasJson.id+'" >'+DatalistKelasJson.kelas+''+DatalistKelasJson.ruang+'</option>');                   
+                        }
+                        $('#txt_id_updt').val(param[0]); 
+                        $('#txt_id_siswa_updt').val(param[1]);  
+                        $('#slc_kelas_updt').val(param[2]);                    
+                        $('#txt_nama_updt').val(param[3]);  
+                        $('#modal-update-distribusi-kelas').modal('show');
+                    }else{
+                        alert("Data master kelas kosong !!!");  
+                    }             
+                },
+                error: function(data)
+                {
+                    alert(data.responseText);
+                }
+            
+            });   
+        }else{
+            $('#modal-update-distribusi-kelas').modal('show');
+        }
+
+    });
 
 
-    /*$("#btn-update-mstr-guru").click(function(){
+    $("#btn-update-distribusi-kelas").click(function(){
         
         $.ajax({
             type:"POST",
             url:'./update',
-            data:$('#frm-update-mstr-guru').serialize(),
+            data:$('#frm-update-distribusi-kelas').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
             success: function(data){           
@@ -102,12 +174,12 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    });*/
+    });
     // end update section ============================================
 
     // begin delete section ==========================================
-    /*
-    $("#dt_distribusi_jabatan").on("click", "#anchor_delete", function(){
+    
+    $("#dt_distribusi_kelas").on("click", "#anchor_delete", function(){
         
         $.ajax({
             type:"POST",
@@ -125,42 +197,41 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    })*/
+    })
     // end delete section ============================================
 
      // begin datatable section ==========================================
-     /*
-     var table = $("#dt_distribusi_jabatan").DataTable({
+     
+     var table = $("#dt_distribusi_kelas").DataTable({
         processing: true,
         serverSide: true,
         deferRender: true,
         ajax: {
-        url:'./getall_distribusi_jabatan',
-        method: 'GET',
-        headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+            url:'./getall_distribusi_kelas',
+            method: 'GET',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
         },
-        columns: [     
-          
-            { data: 'id' },
-            { data: 'id_guru' },
-            { data: 'id_jabatan' },
-            { data: 'created_at' },
+        columns: [            
+            { data: 'id_siswa' },
+            { data: 'mstr_siswa.nama' },
+            { data: 'mstr_kelas.kelas'},
+            { data: 'mstr_kelas.ruang' },
+            { data: 'created_at' },        
             { data: 'updated_at' },          
             { data: 'created_by' },
             { data: 'status' },
-            { data: null },
-           
+            { data: null }, 
         ],
         scrollCollapse: true,      
         columnDefs: [ 
             {
-                targets: [ 6 ],
+                targets: [ 7 ],
                 visible: false
             },
             {
                 searchable: false,
                 orderable: false,
-                targets: 7,
+                targets: 8,
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
@@ -170,7 +241,7 @@ $(document).ready(function(){
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+
                                     '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_guru']+'|'+full['id_jabatan']+'>'+
+                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_siswa']+'|'+full['id_kelas']+'|'+full.mstr_siswa['nama']+'>'+
                                             '<i class="icon-docs"></i>Update</a>'+
                                     '</li>'+
                                     '<li>'+
@@ -180,12 +251,11 @@ $(document).ready(function(){
                                 '</ul>'+
                             '</div>';
                     }
-
                     return data;
                 }
             } ],
         order: [[ 1, 'asc' ]],
-    }).draw();*/
+    }).draw();
   
     // end datatable section ============================================
 });
