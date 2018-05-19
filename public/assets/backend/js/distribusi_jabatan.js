@@ -2,42 +2,64 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-jabatan").click(function(){
+        if($('#slc_nama_siswa option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_guru_jabatan',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {
+                         
+                   if(data.list_guru.length > 0 && data.list_jabatan.length > 0){
     
-       $.ajax({          
-            type:'GET',
-            url:'./get_select_option_guru_jabatan',
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
-            success: function(data)
-            {
-                     
-               if(data.list_guru.length > 0 && data.list_jabatan.length > 0){
+                    var DatalistguruRaw,DatalistguruJson;
+                    
+                    for (i = 0; i < data.list_guru.length; i++){ 
+                        DatalistguruRaw = JSON.stringify(data.list_guru[i]);
+                        DatalistguruJson = JSON.parse(DatalistguruRaw);
+                        if(DatalistguruJson.t_distribusi_jabatan == null || DatalistguruJson.t_distribusi_jabatan.status == 'non_active'){
+                            $('#slc_nama_guru').append('<option value = "'+DatalistguruJson.id+'">'+DatalistguruJson.nama+''+'</option>');                   
+                        }
 
-                var DatalistguruRaw,DatalistguruJson;
-                
-                for (i = 0; i < data.list_guru.length; i++){ 
-                    DatalistguruRaw = JSON.stringify(data.list_guru[i]);
-                    DatalistguruJson = JSON.parse(DatalistguruRaw);
-                
-                    $('#slc_nama_guru').append('<option value = "'+DatalistguruJson.id+'">'+DatalistguruJson.nama+''+'</option>');                   
-                }
+                      }
+                    if($('#slc_jabatan option').length < 1){
+                        var DatalistJabatanRaw,DatalistJabatanJson;
+                        
+                        for (i = 0; i < data.list_jabatan.length; i++){ 
+                            DatalistJabatanRaw = JSON.stringify(data.list_jabatan[i]);
+                            DatalistJabatanJson = JSON.parse(DatalistJabatanRaw);
+                        
+                            $('#slc_jabatan').append('<option value = "'+DatalistJabatanJson.id+'" >'+DatalistJabatanJson.nama+''+'</option>');                   
+                        }
+                    }
+                                   
+                    $('#modal-add-distribusi-jabatan').modal('show');
 
-                var DatalistJabatanRaw,DatalistJabatanJson;
-                for (i = 0; i < data.list_jabatan.length; i++){ 
-                    DatalistJabatanRaw = JSON.stringify(data.list_jabatan[i]);
-                    DatalistJabatanJson = JSON.parse(DatalistJabatanRaw);
-                
-                    $('#slc_jabatan').append('<option value = "'+DatalistJabatanJson.id+'" >'+DatalistJabatanJson.nama+''+'</option>');                   
-                }
-                
-                $('#modal-add-distribusi-jabatan').modal('show');
-               }else{
-                alert("Data master jabatan kosong !!!");     
-               } 
-            },
-            error: function(data)
-            {alert(data.responseText);}
-        
-        });  
+                    if(($('#slc_nama_guru option').length < 1)||($('#slc_jabatan option').length < 1)){
+                        $('#btn-submit-distribusi-jabatan').prop('disabled', true);
+                    }
+                        else{
+                        $('#btn-submit-distribusi-jabatan').prop('disabled', false);
+                    }
+                   }else{
+                    alert("Data master jabatan kosong !!!");     
+                   } 
+                },
+                error: function(data)
+                {alert(data.responseText);}
+            
+            }); 
+        }else{
+            $('#modal-add-distribusi-jabatan').modal('show');
+         
+            if(($('#slc_nama_guru option').length < 1)||($('#slc_jabatan option').length < 1)){
+                $('#btn-submit-distribusi-jabatan').prop('disabled', true);
+            }
+                else{
+                $('#btn-submit-distribusi-jabatan').prop('disabled', false);
+            }
+        }
+       
 
     });
 
@@ -69,21 +91,52 @@ $(document).ready(function(){
     // begin update section ==========================================
     $("#dt_distribusi_jabatan").on("click", "#anchor_update", function(){
         var param = $(this).attr('value').split('|');
-       /* $('#txt_id_updt').val(param[0]);  
-        $('#txt_nama_updt').val(param[1]);
-        $('#txt_alamat_updt').val(param[2]);  
-        $('#txt_no_telp_updt').val(param[3]);
-        $('#txt_email_updt').val(param[4]);  
-        $('#modal-update').modal('show');*/
+        if($('#slc_jabatan_updt option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_jabatan_single',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {           
+                           
+                    if( data.list_jabatan.length > 0){
+                       var DatalistJabatanRaw,DatalistJabatanJson;
+                        for (i = 0; i < data.list_jabatan.length; i++){ 
+                            DatalistJabatanRaw = JSON.stringify(data.list_jabatan[i]);
+                            DatalistJabatanJson = JSON.parse(DatalistJabatanRaw);
+                        
+                            $('#slc_jabatan_updt').append('<option value = "'+DatalistJabatanJson.id+'" >'+DatalistJabatanJson.nama+'</option>');                   
+                        }
+                    
+                        $('#txt_id_updt').val(param[0]);  
+                        $('#txt_id_guru_updt').val(param[1]);
+                        $('#slc_jabatan_updt').val(param[2]);    
+                        $('#txt_nama_updt').val(param[3]);                   
+                        
+                        $('#modal-update-distribusi-jabatan').modal('show');
+                    }else{
+                        alert("Data master jabatan kosong !!!");  
+                    }             
+                },
+                error: function(data)
+                {
+                    alert(data.responseText);
+                }
+            
+            });   
+        }
+        else{
+            $('#modal-update-distribusi-jabatan').modal('show'); 
+        }
     });
 
 
-    /*$("#btn-update-mstr-guru").click(function(){
+    $("#btn-update-distribusi-jabatan").click(function(){
         
         $.ajax({
             type:"POST",
             url:'./update',
-            data:$('#frm-update-mstr-guru').serialize(),
+            data:$('#frm-update-distribusi-jabatan').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
             success: function(data){           
@@ -99,7 +152,7 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    });*/
+    });
     // end update section ============================================
 
     // begin delete section ==========================================
@@ -137,8 +190,8 @@ $(document).ready(function(){
         columns: [     
           
             { data: 'id' },
-            { data: 'id_guru' },
-            { data: 'id_jabatan' },
+            { data: 'mstr_guru.nama' },
+            { data: 'mstr_jabatan.nama' },
             { data: 'created_at' },
             { data: 'updated_at' },          
             { data: 'created_by' },
@@ -165,7 +218,7 @@ $(document).ready(function(){
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+
                                     '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_guru']+'|'+full['id_jabatan']+'>'+
+                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_guru']+'|'+full['id_jabatan']+'|'+full.mstr_guru['nama']+'>'+
                                             '<i class="icon-docs"></i>Update</a>'+
                                     '</li>'+
                                     '<li>'+

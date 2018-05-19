@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_kelas">
+                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_walikelas">
                     <thead>
                         <tr>                           
                             <th>Id</th>

@@ -35,14 +35,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add-distribusi-jabatan" class="btn sbold green" data-toggle="modal"> Add New
+                                <button  id="call-modal-add-distribusi-jabatan" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
-                                <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                <button style="display:none" class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right">

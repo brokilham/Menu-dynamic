@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade modal-scroll" id="modal-update" tabindex="-1" data-replace="true">
+<div class="modal fade modal-scroll" id="modal-update-distribusi-jabatan" tabindex="-1" data-replace="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,53 +7,39 @@
                 <h4 class="modal-title">A Fairly Long Modal</h4>
             </div>
             <div class="modal-body">
-                <form id = "frm-update-mstr-guru" class="form-horizontal" role="form" method="POST">
+                <form id = "frm-update-distribusi-jabatan" class="form-horizontal" role="form" method="POST">
                     <div class="form-body">
+                        <div class="form-group"  style="display:none">
+                            <label class="col-md-2 control-label">  Id</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control"  id="txt_id_updt" name="txt_id_updt" readonly>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">  Id</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control"  id="txt_id_updt" name="txt_id_updt" >
+                                <input type="text" class="form-control"  id="txt_id_guru_updt" name="txt_id_guru_updt" readonly>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-2 control-label">Nama</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control"  id="txt_nama_updt" name="txt_nama_updt" >
+                                <input type="text" class="form-control"  id="txt_nama_updt" name="txt_nama_updt" readonly>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-2 control-label">Alamat</label>
+                            <label class="col-md-2 control-label">Jabatan</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control"  id="txt_alamat_updt" name="txt_alamat_updt" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">No telp</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control"  id="txt_no_telp_updt" name="txt_no_telp_updt" >
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-2 control-label">No Email</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control"  id="txt_email_updt" name="txt_email_updt" >
-                            </div>
-                        </div>
-                        <div class="form-group" style="display:none">
-                            <label class="col-md-2 control-label">Status</label>
-                            <div class="col-md-10">
-                                <select class="form-control"  id = "txt_status_updt" name="txt_status_updt" >
-                                    <option value = "active">Active</option>
-                                    <option value = "non_Active">Non Active</option>
+                                <select class="form-control" id= "slc_jabatan_updt" name ="slc_jabatan_updt">                 
                                 </select>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
-                <button type="button" class="btn green" id="btn-update-mstr-guru" value=''>Save</button>  
+                <button type="button" class="btn green" id="btn-update-distribusi-jabatan" value=''>Save</button>  
             </div>
         </div>
     </div>
