@@ -7,16 +7,19 @@
                 <h4 class="modal-title">A Fairly Long Modal</h4>
             </div>
             <div class="modal-body">
-                <form id = "frm-add-mstr-guru" class="form-horizontal" role="form" method="POST">
+                <form id = "frm-add-distribusi-walikelas" class="form-horizontal" role="form" method="POST">
                     <div class="form-body">
+                        <div class="form-group" style = "display:none">
+                            <label class="col-md-2 control-label">Id Jabatan</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control"  id="txt_id_jabatan" name="txt_id_jabatan" readonly>
+                            </div>
+                        </div> 
                         <div class="form-group">
                             <label class="col-md-2 control-label">Nama Guru</label>
                             <div class="col-md-10">
                                 <select class="form-control" id= "slc_nama_guru" name ="slc_nama_guru">                 
                                 </select>
-                                <!--
-                                    <input type="text" class="form-control"  id="txt_id" name="txt_id" >
-                                -->
                             </div>
                         </div> 
                         <div class="form-group">
@@ -24,9 +27,6 @@
                             <div class="col-md-10">
                                 <select class="form-control" id= "slc_kelas" name ="slc_kelas">                 
                                 </select>
-                                <!--
-                                    <input type="text" class="form-control"  id="txt_id" name="txt_id" >
-                                -->
                             </div>
                         </div>                     
                     </div>
@@ -34,7 +34,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
-                <button type="button" class="btn green" id="btn-submit-mstr-guru" value=''>Save</button>  
+                <button type="button" class="btn green" id="btn-submit-distribusi-walikelas" value=''>Save</button>  
             </div>
         </div>
     </div>

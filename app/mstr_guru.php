@@ -11,4 +11,10 @@ class mstr_guru extends Model
         return $this->hasOne('App\t_distribusi_jabatan','id_guru');
          // kita definisikan foreign keynya id_siswa 
     }
+
+    public function t_distribusi_walikelas()
+    {
+        return $this->hasOne('App\t_distribusi_walikelas','id_guru');
+         // kita definisikan foreign keynya id_siswa 
+    }
 }

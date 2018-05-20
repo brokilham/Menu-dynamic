@@ -2,53 +2,74 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-walikelas").click(function(){
-       // alert("tes");   
-       $('#modal-add-distribusi-walikelas').modal('show');
-       /*
-       $.ajax({          
-            type:'GET',
-            url:'./get_select_option_guru_jabatan',
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
-            success: function(data)
-            {
-                     
-               if(data.list_guru.length > 0 && data.list_jabatan.length > 0){
+        if($('#slc_nama_guru option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_walikelas_kelas',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {
+                         
+                   if(data.list_walikelas.length > 0 && data.list_kelas.length > 0){
+    
+                    var DatalistWalikelasRaw,DatalistWalikelasJson;
+                    
+                    for (i = 0; i < data.list_walikelas.length; i++){ 
+                        DatalistWalikelasRaw = JSON.stringify(data.list_walikelas[i]);
+                        DatalistWalikelasJson = JSON.parse(DatalistWalikelasRaw);
+                        if((DatalistWalikelasJson.t_distribusi_jabatan.mstr_jabatan.nama == 'WALIKELAS') && 
+                        (DatalistWalikelasJson.t_distribusi_walikelas == null ||  DatalistWalikelasJson.t_distribusi_walikelas.status == 'non_active') ){
+                            $('#slc_nama_guru').append('<option value = "'+DatalistWalikelasJson.id+'">'+DatalistWalikelasJson.nama+'</option>');                             
+                            $('#txt_id_jabatan').val(DatalistWalikelasJson.t_distribusi_jabatan.mstr_jabatan.id); 
+                        }
+                    }
+                    if($('#slc_kelas option').length < 1){
+                        var DatalistKelasRaw,DatalistKelasJson;
+                        for (i = 0; i < data.list_kelas.length; i++){ 
+                            DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
+                            DatalistKelasJson = JSON.parse(DatalistKelasRaw);
+                        
+                            $('#slc_kelas').append('<option value = "'+DatalistKelasJson.id+'" >'+DatalistKelasJson.kelas+''+DatalistKelasJson.ruang+'</option>');                   
+                        }
+                    }
+                    
+                   
+                    $('#modal-add-distribusi-walikelas').modal('show');
 
-                var DatalistguruRaw,DatalistguruJson;
-                
-                for (i = 0; i < data.list_guru.length; i++){ 
-                    DatalistguruRaw = JSON.stringify(data.list_guru[i]);
-                    DatalistguruJson = JSON.parse(DatalistguruRaw);
-                
-                    $('#slc_nama_guru').append('<option value = "'+DatalistguruJson.id+'">'+DatalistguruJson.nama+''+'</option>');                   
-                }
+                    if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
+                        $('#btn-submit-distribusi-walikelas').prop('disabled', true);
+                    }
+                    else{
+                        $('#btn-submit-distribusi-walikelas').prop('disabled', false);
+                    }
 
-                var DatalistJabatanRaw,DatalistJabatanJson;
-                for (i = 0; i < data.list_jabatan.length; i++){ 
-                    DatalistJabatanRaw = JSON.stringify(data.list_jabatan[i]);
-                    DatalistJabatanJson = JSON.parse(DatalistJabatanRaw);
-                
-                    $('#slc_jabatan').append('<option value = "'+DatalistJabatanJson.id+'" >'+DatalistJabatanJson.nama+''+'</option>');                   
-                }
-                
-                $('#modal-add-distribusi-jabatan').modal('show');
-               }else{
-                alert("Data master jabatan kosong !!!");     
-               } 
-            },
-            error: function(data)
-            {alert(data.responseText);}
-        
-        });  */
+                   }else{
+                    alert("Data master walikelas kosong !!!");     
+                   } 
+                },
+                error: function(data)
+                {alert(data.responseText);}
+            
+            });  
+        }else{
+            $('#modal-add-distribusi-walikelas').modal('show');
+         
+            if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
+                $('#btn-submit-distribusi-walikelas').prop('disabled', true);
+            }
+            else{
+                $('#btn-submit-distribusi-walikelas').prop('disabled', false);
+            }
+        }
+       
 
     });
 
-    /*
-    $("#btn-submit-distribusi-jabatan").click(function(){
+    $("#btn-submit-distribusi-walikelas").click(function(){
         $.ajax({
             type:"POST",
             url:'./create',
-            data:$('#frm-add-distribusi-jabatan').serialize(),
+            data:$('#frm-add-distribusi-walikelas').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
             success: function(data){      
@@ -65,28 +86,61 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    }); */
+    });
     // end add section ============================================
 
     // begin update section ==========================================
-    /*
-    $("#dt_distribusi_jabatan").on("click", "#anchor_update", function(){
+    
+    $("#dt_distribusi_walikelas").on("click", "#anchor_update", function(){
         var param = $(this).attr('value').split('|');
-        $('#txt_id_updt').val(param[0]);  
-        $('#txt_nama_updt').val(param[1]);
-        $('#txt_alamat_updt').val(param[2]);  
-        $('#txt_no_telp_updt').val(param[3]);
-        $('#txt_email_updt').val(param[4]);  
-        $('#modal-update').modal('show');
-    });*/
+       
+        if($('#slc_kelas_updt option').length < 1){
+            $.ajax({          
+                type:'GET',
+                url:'./get_select_option_kelas_single',
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+                success: function(data)
+                {           
+                           
+                    if( data.list_kelas.length > 0){
+                        var DatalistKelasRaw,DatalistKelasJson;
+                        for (i = 0; i < data.list_kelas.length; i++){ 
+                            DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
+                            DatalistKelasJson = JSON.parse(DatalistKelasRaw);
+                        
+                            $('#slc_kelas_updt').append('<option value = "'+DatalistKelasJson.id+'" >'+DatalistKelasJson.kelas+''+DatalistKelasJson.ruang+'</option>');                   
+                        }
+
+                        $('#txt_id_updt').val(param[0]);  
+                        $('#txt_id_guru_updt').val(param[1]);
+                        $('#slc_kelas_updt').val(param[2]);  
+                        $('#txt_nama_updt').val(param[3]);  
+
+                        $('#modal-update-distribusi-walikelas').modal('show');
+
+                    }else{
+                        $('#modal-update-distribusi-walikelas').modal('show');
+
+                    }             
+                },
+                error: function(data)
+                {
+                    alert(data.responseText);
+                }
+            
+            });   
+        }else{
+            $('#modal-update-distribusi-walikelas').modal('show');
+        }
+    });
 
 
-    /*$("#btn-update-mstr-guru").click(function(){
+    $("#btn-update-distribusi-walikelas").click(function(){
         
         $.ajax({
             type:"POST",
             url:'./update',
-            data:$('#frm-update-mstr-guru').serialize(),
+            data:$('#frm-update-distribusi-walikelas').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
             success: function(data){           
@@ -102,12 +156,12 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    });*/
+    });
     // end update section ============================================
 
     // begin delete section ==========================================
-    /*
-    $("#dt_distribusi_jabatan").on("click", "#anchor_delete", function(){
+    
+    $("#dt_distribusi_walikelas").on("click", "#anchor_delete", function(){
         
         $.ajax({
             type:"POST",
@@ -125,25 +179,26 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    })*/
+    })
     // end delete section ============================================
 
      // begin datatable section ==========================================
-     /*
-     var table = $("#dt_distribusi_jabatan").DataTable({
+     
+     var table = $("#dt_distribusi_walikelas").DataTable({
         processing: true,
         serverSide: true,
         deferRender: true,
         ajax: {
-        url:'./getall_distribusi_jabatan',
+        url:'./getall_distribusi_walikelas',
         method: 'GET',
         headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
         },
         columns: [     
           
-            { data: 'id' },
             { data: 'id_guru' },
-            { data: 'id_jabatan' },
+            { data: 'mstr_guru.nama' },
+            { data: 'mstr_kelas.kelas' },
+            { data: 'mstr_kelas.ruang' },
             { data: 'created_at' },
             { data: 'updated_at' },          
             { data: 'created_by' },
@@ -154,13 +209,13 @@ $(document).ready(function(){
         scrollCollapse: true,      
         columnDefs: [ 
             {
-                targets: [ 6 ],
+                targets: [ 7 ],
                 visible: false
             },
             {
                 searchable: false,
                 orderable: false,
-                targets: 7,
+                targets: 8,
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
@@ -170,7 +225,7 @@ $(document).ready(function(){
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+
                                     '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_guru']+'|'+full['id_jabatan']+'>'+
+                                        '<a id="anchor_update" value='+full['id']+'|'+full['id_guru']+'|'+full['id_kelas']+'|'+full.mstr_guru['nama']+'>'+
                                             '<i class="icon-docs"></i>Update</a>'+
                                     '</li>'+
                                     '<li>'+
@@ -185,7 +240,7 @@ $(document).ready(function(){
                 }
             } ],
         order: [[ 1, 'asc' ]],
-    }).draw();*/
+    }).draw();
   
     // end datatable section ============================================
 });

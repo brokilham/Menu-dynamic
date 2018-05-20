@@ -81,7 +81,8 @@ Route::group(['prefix' => 'distribusi_walikelas'],function()
 {
     Route::get('/main_distribusi_walikelas','Webpages_Distribusi\DistribusiWalikelasController@index');
     Route::get('/get_select_option_walikelas_kelas','Webpages_Distribusi\DistribusiWalikelasController@get_select_option_walikelas_kelas');   
-    //Route::get('/getall_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@getall_distribusi_jabatan');     
+    Route::get('/getall_distribusi_walikelas','Webpages_Distribusi\DistribusiWalikelasController@getall_distribusi_walikelas');     
+    Route::get('/get_select_option_kelas_single','Webpages_Distribusi\DistribusiWalikelasController@get_select_option_kelas_single');   
     Route::post('/create','Webpages_Distribusi\DistribusiWalikelasController@create');
     Route::post('/update','Webpages_Distribusi\DistribusiWalikelasController@update');
     Route::post('/delete','Webpages_Distribusi\DistribusiWalikelasController@delete');
