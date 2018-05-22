@@ -65,6 +65,17 @@ Route::group(['prefix' => 'master_siswa'],function()
     Route::post('/delete','Webpages_Master_Data\SiswaController@delete');
 });
 
+
+Route::group(['prefix' => 'master_jadwal'],function()
+{
+    Route::get('/main_master','Webpages_Master_Data\JadwalController@index');
+    Route::get('/get_all_mstr_jadwal','Webpages_Master_Data\JadwalController@get_all_mstr_jadwal');
+    Route::get('/get_all_mstr_jam','Webpages_Master_Data\JadwalController@get_all_mstr_jam');
+    Route::post('/create','Webpages_Master_Data\JadwalController@create');
+    Route::post('/update','Webpages_Master_Data\JadwalController@update');
+    Route::post('/delete','Webpages_Master_Data\JadwalController@delete');
+});
+
 Route::group(['prefix' => 'distribusi_jabatan'],function()
 {
     Route::get('/main_distribusi_jabatan','Webpages_Distribusi\DistribusiJabatanGuruController@index');

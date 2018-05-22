@@ -121,6 +121,7 @@
         <script src="{{URL::asset('/assets/backend/js/master_jabatan.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/js/master_guru.js')}}" type="text/javascript"></script>  
         <script src="{{URL::asset('/assets/backend/js/master_siswa.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/master_jadwal.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_jabatan.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_kelas.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_walikelas.js')}}" type="text/javascript"></script> 
