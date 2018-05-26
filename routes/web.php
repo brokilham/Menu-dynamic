@@ -99,6 +99,17 @@ Route::group(['prefix' => 'distribusi_walikelas'],function()
     Route::post('/delete','Webpages_Distribusi\DistribusiWalikelasController@delete');
 });
 
+Route::group(['prefix' => 'distribusi_jadwal'],function()
+{
+    Route::get('/main_distribusi_jadwal','Webpages_Distribusi\DistribusiJadwalController@index');
+    Route::post('/get_all_mstr_jam','Webpages_Distribusi\DistribusiJadwalController@get_all_mstr_jam');
+    Route::get('/get_all_mstr_hari','Webpages_Distribusi\DistribusiJadwalController@get_all_mstr_hari');
+    Route::get('/get_all_distribusi_jadwal','Webpages_Distribusi\DistribusiJadwalController@get_all_distribusi_jadwal');
+    Route::post('/create','Webpages_Distribusi\DistribusiJadwalController@create');
+   // Route::post('/update','Webpages_Distribusi\DistribusiJadwalController@update');
+    Route::post('/delete','Webpages_Distribusi\DistribusiJadwalController@delete');
+});
+
 Route::group(['prefix' => 'distribusi_kelas'],function()
 {                                                           
     Route::get('/main_distribusi_kelas','Webpages_Distribusi\DistribusiKelasSiswaController@index');

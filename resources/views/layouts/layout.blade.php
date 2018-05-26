@@ -125,6 +125,7 @@
         <script src="{{URL::asset('/assets/backend/js/distribusi_jabatan.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_kelas.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_walikelas.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/distribusi_jadwal.js')}}" type="text/javascript"></script> 
         <!-- END PROCESS SCRIPT -->
 
 
