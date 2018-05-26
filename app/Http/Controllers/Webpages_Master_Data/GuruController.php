@@ -1,8 +1,12 @@
 <?php
 namespace App\Http\Controllers\Webpages_Master_Data;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+//use Illuminate\Foundation\Auth\RegistersUsers;
 use App\mstr_guru;
+use App\User;
 use auth;
 use DataTables;
 use Exception;
@@ -20,7 +24,7 @@ class GuruController extends Controller
     }
 
     public function create(Request $request){
-      
+        DB::beginTransaction();
         try
         {
    
@@ -33,15 +37,35 @@ class GuruController extends Controller
             $mstr_guru->created_by =  Auth::user()->id;
             $mstr_guru->status = "active";  
             $mstr_guru->save();
-            
-            $result = ($mstr_guru == TRUE)? "S":"F";
-            $message = "-";
+
+            $User =  new User;
+            $User->name = $request->txt_nama;
+            $User->email = $request->txt_id;
+            $User->password = Hash::make($request->txt_id);
+            $User->login_as = "-";
+            $User->status = "active";
+            $User->save();
+
+            //$UserUSer   = ($User == TRUE)? "S":"F";
+            //$resultGuru = ($mstr_guru == TRUE)? "S":"F";
+
+            if(($mstr_guru == TRUE) && ($User== TRUE)){
+                DB::commit();
+                $result = "S";
+                $message = "";
+            }else{
+                DB::rollback();            
+                $result = "F";
+                $message = "Terjadi kesalahan saat proses penyimpanan !!!";
+            }           
         }
         catch(Exception $e){
+            DB::rollback();
             $result = "E";
             $message = $e->getMessage();
         }
             
+             
         return response()->json(['code' => $result, 'message' =>$message] );
     }
 
