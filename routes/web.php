@@ -106,7 +106,6 @@ Route::group(['prefix' => 'distribusi_jadwal'],function()
     Route::get('/get_all_mstr_hari','Webpages_Distribusi\DistribusiJadwalController@get_all_mstr_hari');
     Route::get('/get_all_distribusi_jadwal','Webpages_Distribusi\DistribusiJadwalController@get_all_distribusi_jadwal');
     Route::post('/create','Webpages_Distribusi\DistribusiJadwalController@create');
-   // Route::post('/update','Webpages_Distribusi\DistribusiJadwalController@update');
     Route::post('/delete','Webpages_Distribusi\DistribusiJadwalController@delete');
 });
 
@@ -116,8 +115,35 @@ Route::group(['prefix' => 'distribusi_kelas'],function()
     Route::get('/get_select_option_siswa_kelas','Webpages_Distribusi\DistribusiKelasSiswaController@get_select_option_siswa_kelas');   
     Route::get('/get_select_option_kelas_single','Webpages_Distribusi\DistribusiKelasSiswaController@get_select_option_kelas_single');   
     Route::get('/getall_distribusi_kelas','Webpages_Distribusi\DistribusiKelasSiswaController@getall_distribusi_kelas');     
-    //Route::get('/getall_distribusi_kelas2','Webpages_Distribusi\DistribusiKelasSiswaController@getall_distribusi_kelas2');  
     Route::post('/create','Webpages_Distribusi\DistribusiKelasSiswaController@create');
     Route::post('/update','Webpages_Distribusi\DistribusiKelasSiswaController@update');
     Route::post('/delete','Webpages_Distribusi\DistribusiKelasSiswaController@delete');
 });
+
+
+Route::group(['prefix' => 'transaksi_pelanggaran'],function()
+{                                                           
+    Route::get('/main_transaksi_pelanggaran','Webpages_Pelanggaran\TransaksiPelanggaran@index');
+    Route::get('/get_select_option_siswa','Webpages_Pelanggaran\TransaksiPelanggaran@get_select_option_siswa');
+    Route::get('/getall_transaksi_pelanggaran','Webpages_Pelanggaran\TransaksiPelanggaran@getall_transaksi_pelanggaran');     
+    Route::post('/create','Webpages_Pelanggaran\TransaksiPelanggaran@create');
+ });
+
+
+
+Route::group(['prefix' => 'transaksi_bimbingan'],function()
+{      
+    // == begin route pengajuan =============================                                                     
+     Route::get('/main_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@index');
+     Route::get('/getall_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_pengajuan_bimbingan');     
+     Route::post('/set_respon_pengajuan','Webpages_Bimbingan\TransaksiBimbingan@set_respon_pengajuan');
+     // == end route pengajuan ===============================
+    
+    
+    // == begin route realisasi =============================
+    Route::get('/main_transaksi_realisasi_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@index2');
+    Route::get('/getall_transaksi_realisasi_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_realisasi_bimbingan');     
+    // == end route realisasi =============================== 
+  
+    
+ });
