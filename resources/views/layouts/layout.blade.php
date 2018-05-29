@@ -18,11 +18,18 @@
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link href="{{URL::asset('/assets/backend/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('/assets/backend/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('/assets/backend/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('/assets/backend/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{URL::asset('/assets/backend/global/plugins/clockface/css/clockface.css')}}" rel="stylesheet" type="text/css" />
+
         <link href="{{URL::asset('/assets/backend/global/plugins/morris/morris.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{URL::asset('/assets/backend/global/plugins/fullcalendar/fullcalendar.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{URL::asset('/assets/backend/global/plugins/jqvmap/jqvmap/jqvmap.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{URL::asset('/assets/backend/global/plugins/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{URL::asset('/assets/backend/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}" rel="stylesheet" type="text/css" />   
+        <link href="{{URL::asset('/assets/backend/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css')}}" rel="stylesheet" type="text/css" />  
+        <link href="{{URL::asset('/assets/backend/global/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />   
+        <link href="{{URL::asset('/assets/backend/global/plugins/select2/css/select2-bootstrap.min.css')}}" rel="stylesheet" type="text/css" />    
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{URL::asset('/assets/backend/global/css/components-md.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
@@ -99,7 +106,10 @@
         <script src="{{URL::asset('/assets/backend/global/plugins/select2/js/select2.full.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/global/plugins/jquery-validation/js/jquery.validate.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/global/plugins/jquery-validation/js/additional-methods.min.js')}}" type="text/javascript"></script>
-        
+        <script src="{{URL::asset('/assets/backend/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/global/plugins/clockface/js/clockface.js')}}" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/global/scripts/app.min.js')}}" type="text/javascript"></script>
@@ -108,6 +118,8 @@
         <script src="{{URL::asset('/assets/backend/pages/scripts/dashboard.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/pages/scripts/table-datatables-managed.min.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/pages/scripts/form-wizard.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>  
+        <script src="{{URL::asset('/assets/backend/pages/scripts/components-select2.min.js')}}" type="text/javascript"></script>              
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>
@@ -125,7 +137,10 @@
         <script src="{{URL::asset('/assets/backend/js/distribusi_jabatan.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_kelas.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/distribusi_walikelas.js')}}" type="text/javascript"></script> 
-        <script src="{{URL::asset('/assets/backend/js/distribusi_jadwal.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/distribusi_jadwal.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/js/transaksi_pelanggaran.js')}}" type="text/javascript"></script> 
+        <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_pengajuan.js')}}" type="text/javascript"></script>
+        <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_realisasi.js')}}" type="text/javascript"></script>    
         <!-- END PROCESS SCRIPT -->
 
 
