@@ -68,7 +68,7 @@
                                 <div class="col-md-9">                        
                                     <div class="mt-radio-inline">
                                         <label class="mt-radio">
-                                            <input type="radio" name="optionsRencanaBimbingan" id="optionsAll" value="" > All
+                                            <input type="radio" name="optionsRencanaBimbingan" id="optionsAll" value="" checked> All
                                             <span></span>
                                         </label>
                                         <label class="mt-radio">

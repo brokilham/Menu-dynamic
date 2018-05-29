@@ -143,6 +143,8 @@ Route::group(['prefix' => 'transaksi_bimbingan'],function()
     // == begin route realisasi =============================
     Route::get('/main_transaksi_realisasi_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@index2');
     Route::get('/getall_transaksi_realisasi_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_realisasi_bimbingan');     
+    Route::get('/getall_transaksi_realisasi_keterangan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_realisasi_keterangan');     
+    Route::post('/set_respon_realisasi','Webpages_Bimbingan\TransaksiBimbingan@set_respon_realisasi');
     // == end route realisasi =============================== 
   
     

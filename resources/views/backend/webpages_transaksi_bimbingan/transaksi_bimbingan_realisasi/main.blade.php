@@ -27,14 +27,14 @@
             <div class="portlet-title">
                 <div class="caption font-dark">
                     <i class="icon-settings font-dark"></i>
-                    <span class="caption-subject bold uppercase"> Daftar realisasi bimbingan</span>
+                    <span class="caption-subject bold uppercase"> Daftar Realisasi bimbingan</span>
                 </div>              
             </div>
             <div class="portlet-body">
                 <div class="table-toolbar">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="btn-group">
+                            <div class="btn-group" style="display:none">
                                 <button id="call-modal-add-transaksi-pelanggaran" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -62,39 +62,41 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group ">
+                                <div class="col-md-9">                        
+                                    <div class="mt-radio-inline">
+                                        <label class="mt-radio">
+                                            <input type="radio" name="optionsRelcanaBimbingan" id="optionsAll" value="all" checked> All
+                                            <span></span>
+                                        </label>
+                                        <label class="mt-radio">
+                                            <input type="radio" name="optionsRelcanaBimbingan" id="optionBlmRealisasi" value="belum_realisasi" > Belum Realisasi
+                                            <span></span>
+                                        </label>
+                                        <label class="mt-radio">
+                                            <input type="radio" name="optionsRelcanaBimbingan" id="optionSudahRealisasi" value="sudah_realisasi" > Sudah Realisasi
+                                            <span></span>
+                                        </label>
+                                        <label class="mt-radio">
+                                            <input type="radio" name="optionsRelcanaBimbingan" id="optionsKadaluarsa" value="kadaluarsa" > Kadaluarsa
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>            
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_transaksi_realisasi_bimbingan">
                     <thead>
                         <tr>             
                             <th>Id</th>
-                            <th>Id siswa</th>                               
-                            <th>Jenis Pelanggaran</th>
-                            <th>Ket Pelanggaran</th>
-                            <th>Jenis Pendisiplinan</th>
-                            <th>Ket Pendisiplinan</th>
-                            <th>Tgl Kejadian</th>
-                            <th>Lokasi Kejadian</th>                                                 
-                            <th>Created By</th>  
-                            <th>Created Date</th>
-                            <th>Updated Date</th> 
-                            <th>Status</th>  
-                            <th>Actions</th>       
-                            
-                            <!--
-                            <th>Id</th>
                             <th>Id siswa</th>
-                            <th>Nama Siswa</th>                          
-                            <th>Jenis Pelanggaran</th>
-                            <th>Ket Pelanggaran</th>
-                            <th>Jenis Pendisiplinan</th>
-                            <th>Ket Pendisiplinan</th>
-                            <th>Tgl Kejadian</th>
-                            <th>Lokasi Kejadian</th>                                                 
-                            <th>Created By</th>  
-                            <th>Created Date</th>
-                            <th>Updated Date</th> 
-                            <th>Status</th>  
-                            <th>Actions</th>   -->
+                            <th>Id jadwal</th>
+                            <th>Topik</th> 
+                            <th>Action</th>             
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             
@@ -106,4 +108,4 @@
     </div>
 </div>  
 @endsection
-
+@include('backend.webpages_transaksi_bimbingan.transaksi_bimbingan_realisasi.modal-tak-terjadi-realisasi') 
