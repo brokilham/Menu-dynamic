@@ -1,7 +1,7 @@
 <div class="page-header navbar navbar-fixed-top">
     <div class="page-header-inner ">
         <div class="page-logo">
-            <a href="{{ url('/Dashboard') }}" >
+            <a href="{{ url('/home') }}" >
                 <img src="{{URL::asset('/assets/backend/layouts/layout/img/logo.png')}}" alt="logo" class="logo-default" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav pull-right">                               
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <span class="username username-hide-on-mobile" id="IdUser" > </span>
+                        <span class="username username-hide-on-mobile" id="IdUser" >{{Auth::user()->name}} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
