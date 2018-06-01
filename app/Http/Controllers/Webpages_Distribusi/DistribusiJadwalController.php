@@ -73,8 +73,9 @@ class DistribusiJadwalController extends Controller
     }
 
     public function get_all_distribusi_jadwal(){
-        //$t_distribusi_jadwal = t_distribusi_jadwal::where('id_guru',Auth::user()->id)->where('status', 'active')->with('mstr_jadwal','mstr_jadwal.mstr_jam')->get(); 
-        $t_distribusi_jadwal = t_distribusi_jadwal::where('id_guru',Auth::user()->id)->where('status', 'active')->get();   
+        // di join table ini masih ada masalah 
+        // hari dan jam ada yang tidak keluar
+        $t_distribusi_jadwal = t_distribusi_jadwal::where('id_guru',Auth::user()->id)->where('status', 'active')->with('mstr_jadwal','mstr_jadwal.mstr_jam')->get(); 
         return DataTables::of($t_distribusi_jadwal)->make(true);
     }
     
