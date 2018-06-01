@@ -88,7 +88,8 @@ trait AuthenticatesUsers
      * @return array
      */
     protected function credentials(Request $request)
-    {   $request->merge(['status' => 'active','login_at' => 'web']);
+    {   
+        $request->merge(['status' => 'active','login_at' => 'web']);
         return $request->only($this->username(), 'password','status','login_at');
     }
 
