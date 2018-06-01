@@ -17,7 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Route::get('/home', 'HomeController@index')->name('home')
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'dashboard'],function(){
+    Route::get('/get_pelanggaran_in_year','HomeController@get_pelanggaran_in_year');
+    Route::get('/get_bimbingan_in_year','HomeController@get_bimbingan_in_year');
+});
 
 Route::group(['prefix' => 'master_privilages'],function()
 {
