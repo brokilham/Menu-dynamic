@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade bs-modal-sm" id="modal-add" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bs-modal-sm" id="modal-add-mstr-jabatan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,18 +10,15 @@
                 <form id = "frm-add-mstr-jabatan" class="form-horizontal" role="form" method="POST">
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Nama</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control"  id="txt_name" name="txt_name" >
+                            <label class="col-md-4 control-label">Login As</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control"  id="txt_login_as" name="txt_login_as" readonly >
                             </div>
                         </div>
-                        <div class="form-group" style="display:none">
-                            <label class="col-md-3 control-label">Status</label>
-                            <div class="col-md-7">
-                                <select class="form-control"  id = "txt_status" name="txt_status" >
-                                    <option value = "active">Active</option>
-                                    <option value = "non_Active">Non Active</option>
-                                </select>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Nama</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control"  id="txt_name" name="txt_name" >
                             </div>
                         </div>
                     </div>

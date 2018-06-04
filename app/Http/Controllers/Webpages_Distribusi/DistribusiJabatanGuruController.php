@@ -5,9 +5,11 @@ use Illuminate\Http\Request;
 use App\mstr_jabatan;
 use App\mstr_guru;
 use App\t_distribusi_jabatan;
+use App\User;
 use auth;
 use DataTables;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class DistribusiJabatanGuruController extends Controller
 {
@@ -20,8 +22,6 @@ class DistribusiJabatanGuruController extends Controller
   
         $list_guru = mstr_guru::where('status', 'active')->with('t_distribusi_jabatan')->get();
         $list_jabatan = mstr_jabatan::where('status', 'active')->get();
-        /*$list_guru = mstr_guru::ALL();
-        $list_jabatan = mstr_jabatan::ALL();*/
         return response()->json(['list_guru' => $list_guru, 'list_jabatan' =>$list_jabatan] );
         
     }
@@ -33,8 +33,9 @@ class DistribusiJabatanGuruController extends Controller
 
 
     public function create(Request $request){
+        DB::beginTransaction();
         try
-        {
+        {  // ketika create master jabatan untuk guru maka otomatis, proses set activasi user guru tersebut juga di lakukan 
             $DataExist = t_distribusi_jabatan::where('id_guru', $request->slc_nama_guru)->first();
             if($DataExist == null){
                 $t_distribusi_jabatan = new t_distribusi_jabatan;
@@ -44,39 +45,88 @@ class DistribusiJabatanGuruController extends Controller
                 $t_distribusi_jabatan->status = "active";  
                 $t_distribusi_jabatan->save();
                 
-                $result = ($t_distribusi_jabatan == TRUE)? "S":"F";
-                $message = "-";
+                
+                $list_jabatan = mstr_jabatan::where('id',  $request->slc_jabatan)->first();    
+                
+                $User = User::where('email', $request->slc_nama_guru)->update(
+                    ['login_as' => $list_jabatan->login_as,
+                     'login_at' => $list_jabatan->login_at,
+                     'status' => 'active']
+                );
+
+                if(( $t_distribusi_jabatan == TRUE) && ($User == 1)){
+                    DB::commit();
+                    $result = "S";
+                    $message = "-";
+                }else{
+                    DB::rollback();  
+                    $result = "F";
+                    $message = "Terjadi kesalahan saat proses penyimpanan !!!";
+                }
+            
             }
             else{
-                $return =   t_distribusi_jabatan::where('id', $DataExist->id)->update(
+              
+                
+                $t_distribusi_jabatan =   t_distribusi_jabatan::where('email', $request->$txt_id_guru_updt)->update(
                     ['id_jabatan' => $request->slc_jabatan,
                      'created_by' =>  Auth::user()->id,
                      'status' => 'active']
                 );
-                $result = ($return == 1)? "S":"F";
-                $message = "-";
+
+                $list_jabatan = mstr_jabatan::where('id',  $request->slc_jabatan)->first();
+                $User =  User::where('email', $request->slc_nama_guru)->update(
+                    ['login_as' => $list_jabatan->login_as,
+                     'login_at' => $list_jabatan->login_at,
+                     'status' => 'active']
+                );
+             
+                if(( $t_distribusi_jabatan == TRUE) && ($User == 1)){
+                    DB::commit();
+                    $result = "S";
+                    $message = "-";
+                }else{
+                    DB::rollback();  
+                    $result = "F";
+                    $message = "Terjadi kesalahan saat proses penyimpanan !!!";
+                }
+                          
             }
-            
+                     
         }
         catch(Exception $e){
+            DB::rollback();
             $result = "E";
             $message = $e->getMessage();
         }
-            
+            $message = $list_jabatan;
        return response()->json(['code' => $result, 'message' =>$message] );
-       //return response()->json(['code' => $request->slc_nama_guru, 'message' =>$request->slc_jabatan] );
+
     }
 
     public function update(Request $request){
         try{
            
-            $return =   t_distribusi_jabatan::where('id', $request->txt_id_updt)->update(
+            $t_distribusi_jabatan =   t_distribusi_jabatan::where('id', $request->txt_id_updt)->update(
                 ['id_jabatan' => $request->slc_jabatan_updt]
             );
-            $result = ($return == 1)? "S":"F";
-            $message = "-";
 
-            $message = "-";
+            $list_jabatan = mstr_jabatan::where('id',  $request->slc_jabatan_updt)->first();
+            $User =  User::where('email', $request->txt_id_guru_updt)->update(
+                ['login_as' => $list_jabatan->login_as,
+                 'login_at' => $list_jabatan->login_at]
+            );
+         
+            if(( $t_distribusi_jabatan == TRUE) && ($User == 1)){
+                DB::commit();
+                $result = "S";
+                $message = "-";
+            }else{
+                DB::rollback();  
+                $result = "F";
+                $message = "Terjadi kesalahan saat proses penyimpanan !!!";
+            }
+           
           }
           catch(Exception $e){
               $result = "E";
@@ -88,9 +138,11 @@ class DistribusiJabatanGuruController extends Controller
     public function delete(Request $request){
         try{
            
-            $return =   t_distribusi_jabatan::where('id', $request->id)->update(['status' => 'non_active']);
-            $result = ($return == 1)? "S":"F";
-            $message = "-";
+            $t_distribusi_jabatan =   t_distribusi_jabatan::where('id', $request->id)->update(['status' => 'non_active']);
+         
+            $User =  User::where('email', $request->id_guru)->update(
+                ['status' => 'non_active']
+            );
         }
         catch(Exception $e){
             $result = "E";
@@ -102,7 +154,6 @@ class DistribusiJabatanGuruController extends Controller
 
     public function getall_distribusi_jabatan(){
         
-        //$t_distribusi_jabatan = t_distribusi_jabatan::where('status', 'active');
         $t_distribusi_jabatan = t_distribusi_jabatan::where('status', 'active')->with('mstr_guru','mstr_jabatan')->get();   
         return DataTables::of($t_distribusi_jabatan)->make(true);
     }

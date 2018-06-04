@@ -1,10 +1,10 @@
 <!-- /.modal -->
-<div class="modal fade bs-modal-sm" id="modal-add" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bs-modal-sm" id="modal-add-mstr-kelas" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Add Master Kelas</h4>
+                <h4 class="modal-title">Tambah Master Kelas</h4>
             </div>
             <div class="modal-body">
                 <form id = "frm-add-mstr-kelas" class="form-horizontal" role="form" method="POST">
@@ -13,6 +13,7 @@
                             <label class="col-md-3 control-label">Kelas</label>
                             <div class="col-md-9">
                                <select class="form-control" id="txt_kelas" name="txt_kelas">
+                                   <option value="">Pilih kelas</option>
                                    <option value="7">7</option>
                                    <option value="8">8</option>
                                    <option value="9">9</option>

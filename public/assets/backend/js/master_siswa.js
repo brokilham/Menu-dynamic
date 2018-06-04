@@ -1,24 +1,28 @@
 $(document).ready(function(){
   
     // begin add section ==========================================
-   $("#call-modal-add").click(function(){
-        $('#modal-add').modal('show');
+   $("#call-modal-add-mstr-siswa").click(function(){
+        $('#frm-add-mstr-siswa').trigger("reset");
+        $('#modal-add-mstr-siswa').modal('show');
     });
  
     $("#btn-submit-mstr-siswa").click(function(){
-       //alert("tes");
+     
         $.ajax({
             type:"POST",
             url:'./create',
-            data:$('#frm-add-mstr-siswa').serialize(),
+            data: new FormData($("#frm-add-mstr-siswa")[0]), //$('#frm-add-mstr-siswa').serialize(),
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
             dataType: 'json',
+            processData: false,
+            contentType: false,
+            async: true,
             success: function(data){           
                 if (data.code == "S"){
                     location.reload();
                 }  
                 else{
-                    console.log(data.responseText);
+                    alert(data.message);
                 }
 
             },
@@ -49,41 +53,76 @@ $(document).ready(function(){
     
     // begin update section ==========================================
     $("#dt_master_siswa").on("click", "#anchor_update", function(){
-        //alert("tes");
-        //var param = $(this).attr('value').split('|');
-        //$('#txt_status_id_updt').val(param[0]);  
-        //$('#txt_name_updt').val(param[1]);  
-        $('#modal-update').modal('show');       
-    });
 
-    
-    /*$("#btn-update-mstr-siswa").click(function(){
-        
+        $('#frm-update-mstr-siswa').trigger("reset");
+        reset_color_form("frm-update-mstr-siswa");
         $.ajax({
-            type:"POST",
-            url:'./update',
-            data:$('#frm-update-mstr-siswa').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
+            type:"GET",
+            url:'./get_detail_mstr_siswa2',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },    
+            data:{id:$(this).attr('value')},           
             success: function(data){           
-                if (data.code == "S"){
-                    location.reload();
-                }  
-                else{
-                    alert(data.message);                                   
-                }
+               // alert(JSON.stringify(data));
+               // 
+               $("#txt_sis_updt_nis").val(data.mstr_siswa.id);
+               $("#txt_sis_updt_nama").val(data.mstr_siswa.nama);
+               $("#txt_sis_updt_jenis_kelamin").val(data.mstr_siswa.jenis_kelamin);
+               $("#txt_sis_updt_foto").val("");
+               $("#txt_sis_updt_alamat").val(data.mstr_siswa.alamat);
+               $("#txt_sis_updt_no_telp").val(data.mstr_siswa.no_telp);
+               $("#txt_sis_updt_email").val(data.mstr_siswa.email);
+               $("#txt_sis_updt_hobi").val(data.mstr_siswa.hobi);
+
+               $("#txt_walimurid_updt_id").val(data.mstr_siswa.mstr_walimurid[0].id);
+               $("#txt_walimurid_updt_nama").val(data.mstr_siswa.mstr_walimurid[0].nama);      
+               $("#txt_walimurid_updt_jenis_kelamin").val(data.mstr_siswa.mstr_walimurid[0].jenis_kelamin);
+               $("#txt_walimurid_updt_hub_keluarga").val(data.mstr_siswa.mstr_walimurid[0].hub_keluarga);
+               $("#txt_walimurid_updt_pekerjaan").val(data.mstr_siswa.mstr_walimurid[0].pekerjaan);
+               $("#txt_walimurid_updt_alamat").val(data.mstr_siswa.mstr_walimurid[0].alamat);
+               $("#txt_walimurid_updt_no_telp").val(data.mstr_siswa.mstr_walimurid[0].no_telp);
+               $("#txt_walimurid_updt_email").val(data.mstr_siswa.mstr_walimurid[0].email);
+
+               $('#modal-update-mstr-siswa').modal('show');
 
             },
             error: function(data){
-                alert(data.responseText);
+              
             }
         });
-    });*/
+                 
+    });
+
+    
+    $("#btn-update-mstr-siswa").click(function(){
+        var text_valid   = Check_text_input("frm-update-mstr-siswa");
+        var number_valid = Check_number_input("frm-update-mstr-siswa");
+        var email_valid = Check_email_input("frm-update-mstr-siswa");
+        if((text_valid == true) && (email_valid == true) && (number_valid == true)) {
+            $.ajax({
+                type:"POST",
+                url:'./update',
+                data:$('#frm-update-mstr-siswa').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){           
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);                                   
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
+                }
+            });
+        }
+    });
     // end update section ============================================
 
     // begin delete section ==========================================
-   /* $("#dt_master_siswa").on("click", "#anchor_delete", function(){
-       
+    $("#dt_master_siswa").on("click", "#anchor_delete", function(){
         $.ajax({
              type:"POST",
              url:'./delete',
@@ -93,14 +132,17 @@ $(document).ready(function(){
              success: function(data){             
                  //alert(data.code+" "+data.message);
                  if (data.code == "S"){
-                     location.reload();
-                 }  
+                    location.reload();
+                }  
+                else{
+                    alert(data.message);                                   
+                }
              },
              error: function(data){
                  alert(data.responseText);
              }
          });
-     })*/
+     })
     // end delete section ============================================
     
     // begin datatable section ==========================================
@@ -131,6 +173,9 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
          columnDefs: [ 
+            {className: "dt-center", 
+                targets:  [ 0,1,2,3,4,5,6]
+            },
             {
                 targets: [ 6 ],
                 visible: false
@@ -142,12 +187,8 @@ $(document).ready(function(){
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
-                        data = '<a href="../master_siswa/get_detail_mstr_siswa/'+full['id']+'" target="_blank"> lihat </a>'
-                       // <a href="{{ url('/Dashboard') }}" >
-                       // <a href="?mm=service_level2&det_lembar_terkirim=&jenis_lembar=terkirim&depo=<?php echo $_GET['depo']; ?>&entity=		<?php echo str_replace("'","",$_GET['entity']); ?>&jenis_lap=<?php echo $_GET['jenis_lap']; ?>&month=<?php echo $x_value; ?>&nm_bulan=<?php echo $x; ?>&tahun=<?php echo $_GET['tahun']; ?>&principal=<?php echo $row_co['szcategory_1']; ?>&opt_b=<?php echo $_GET['opt_b']; ?>&bvoid=<?php echo $_GET['bvoid']?>&file=all" target='_blank'>
-	
+                        data = '<a href="../master_siswa/get_detail_mstr_siswa/'+full['id']+'" target="_blank"> lihat </a>'                        
                     }
-
                     return data;
                 }
             },
@@ -164,7 +205,7 @@ $(document).ready(function(){
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+
                                     '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['nama']+'>'+
+                                        '<a id="anchor_update" value='+full['id']+'>'+
                                             '<i class="icon-docs"></i>Update</a>'+
                                     '</li>'+
                                     '<li>'+

@@ -15,4 +15,20 @@ class mstr_jadwal extends Model
     {
         return $this->belongsTo('App\t_distribusi_jadwal','id_jadwal');   
     }
+
+     // begin convert datetime to date
+     public function getCreatedAtAttribute()
+     {
+         return \Carbon\Carbon::parse($this->attributes['created_at'])
+         ->format('d-m-Y');
+     }
+ 
+     public function getUpdatedAtAttribute()
+     {
+     
+        return \Carbon\Carbon::parse($this->attributes['updated_at'])
+        ->format('d-m-Y');
+     }
+ 
+     // end convert datetime to date
 }

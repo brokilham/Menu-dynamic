@@ -82,7 +82,7 @@ class JadwalController extends Controller
 
     public function get_all_mstr_jadwal(){
         
-        $mstr_jadwal = mstr_jadwal::where('status', 'active')->get();   
+        $mstr_jadwal = mstr_jadwal::where('status', 'active')->with('mstr_jam')->get();   
         //$mstr_jadwal = mstr_jadwal::where('status', 'active')->with('mstr_siswa','mstr_kelas')->get();   
         return DataTables::of($mstr_jadwal)->make(true);
     }

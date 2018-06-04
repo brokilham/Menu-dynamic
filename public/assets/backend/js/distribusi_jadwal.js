@@ -29,10 +29,24 @@ $(document).ready(function(){
         else{
             $('#modal-add-distribusi-jadwal').modal('show');
         } 
+
+        // hanya untuk mengetes view datatable pada page ini
+        /*$.ajax({
+            type:"GET",
+            url:'./get_all_distribusi_jadwal',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+            success: function(data){      
+               
+                alert(JSON.stringify(data));
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        });*/
     });
 
 
-    $("#slc_hari").change(function() {
+    $("#frm-add-distribusi-jadwal  #slc_hari").change(function() {
         var text_selected_hari = $(this).val();
         $('#slc_jam').empty();
         if(text_selected_hari != ""){
@@ -117,6 +131,8 @@ $(document).ready(function(){
     // end delete section ============================================
 
     // begin datatable section ==========================================
+    /*
+    // jika  menggunakna jqueey data table ini masih error kemungkinan karena joinny
     var table = $("#dt_distribusi_jadwal").DataTable({
         processing: true,
         serverSide: true,
@@ -128,12 +144,9 @@ $(document).ready(function(){
         },
         columns: [        
             { data: 'id' },
-            /*{ data: 'mstr_jadwal.hari' },
+            { data: 'mstr_jadwal.hari' },
             { data: 'mstr_jadwal.mstr_jam.jam_mulai' },
-            { data: 'mstr_jadwal.mstr_jam.jam_selesai' },*/
-            { data: null },
-            { data: null },
-            { data: null },
+            { data: 'mstr_jadwal.mstr_jam.jam_selesai' },
             { data: 'created_at' },
             { data: 'updated_at' },
             { data: 'created_by' },          
@@ -151,6 +164,56 @@ $(document).ready(function(){
                 searchable: false,
                 orderable: false,
                 targets: 8,
+                data: null,
+                render: function(data, type, full, meta){
+                    if(type === 'display'){
+                        data = '<div class="btn-group">'+
+                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
+                                    '<i class="fa fa-angle-down"></i>'+
+                                '</button>'+
+                                '<ul class="dropdown-menu" role="menu">'+                                
+                                    '<li>'+
+                                        '<a id="anchor_delete" value='+full['id']+' >'+
+                                            '<i class="icon-tag"></i>Delete</a>'+
+                                    '</li>'+                                       
+                                '</ul>'+
+                            '</div>';
+                    }
+
+                    return data;
+                }
+            } ],
+        order: [[ 1, 'asc' ]],
+    }).draw();*/
+    var table = $("#dt_distribusi_jadwal").DataTable({
+        processing: true,
+        serverSide: true,
+        deferRender: true,
+        ajax: {
+            url:'./get_all_distribusi_jadwal',
+            method: 'GET',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },
+        },
+        columns: [        
+            { data: 'id' },
+            { data: 'id_jadwal' },
+            { data: 'created_at' },
+            { data: 'updated_at' },
+            { data: 'created_by' },          
+            { data: 'status' },
+            { data: null },
+        
+        ],
+        scrollCollapse: true,      
+        columnDefs: [ 
+            {
+                targets: [ 5 ],
+                visible: false
+            },
+            {
+                searchable: false,
+                orderable: false,
+                targets: 6,
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){

@@ -8,7 +8,15 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>User</span>
+            <span>Master Data</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Master Siswa</span>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <span>Detail Data Siswa</span>
         </li>
     </ul>
 </div>
@@ -31,8 +39,7 @@
                     <div class="col-md-3">
                         <ul class="list-unstyled profile-nav">
                             <li>
-                                <!--<img src="../assets/pages/media/profile/people19.png" class="img-responsive pic-bordered" alt="" />-->
-                                <img src="{{URL::asset('/assets/backend/pages/media/profile/people19.png')}}" class="img-responsive pic-bordered" alt=""/>                                             
+                                <img src="{{asset('storage/'.$datas->path_foto)}}" class="img-responsive pic-bordered" alt=""/>                                                              
                             </li>                        
                         </ul>
                     </div>

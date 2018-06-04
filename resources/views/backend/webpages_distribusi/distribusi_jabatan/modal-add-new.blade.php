@@ -13,6 +13,7 @@
                             <label class="col-md-2 control-label"> Nama Guru</label>
                             <div class="col-md-10">
                                 <select class="form-control" id= "slc_nama_guru" name ="slc_nama_guru">                 
+                                    <option value = "">pilih guru</option>
                                 </select>
                                 <!--<input type="text" class="form-control"  id="txt_nama" name="txt_nama" >-->
                             </div>
@@ -21,6 +22,7 @@
                             <label class="col-md-2 control-label">Jabatan</label>
                             <div class="col-md-10">
                                 <select class="form-control" id="slc_jabatan" name="slc_jabatan">                      
+                                    <option value = "">pilih jabatan</option>
                                 </select>
                                     
                                 <!--

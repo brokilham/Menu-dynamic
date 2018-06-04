@@ -8,11 +8,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Distribusi</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Distribusi Jabatan</span>
         </li>
     </ul>
 </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button  id="call-modal-add-distribusi-jabatan" class="btn sbold green" data-toggle="modal"> Add New
+                                <button  id="call-modal-add-distribusi-jabatan" class="btn sbold green" data-toggle="modal" {{ Auth::user()->login_as != "administrator" ? "disabled" : "" }}> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -76,14 +76,14 @@
                             <th>Status</th>  
                             <th>Actions</th>
                             -->
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Jabatan</th>                     
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>  
-                            <th>Status</th>  
-                            <th>Actions</th>
+                            <th style = " text-align: center;">Id</th>
+                            <th style = " text-align: center;">Nama</th>
+                            <th style = " text-align: center;">Jabatan</th>                     
+                            <th style = " text-align: center;">Created Date</th>
+                            <th style = " text-align: center;">Updated Date</th>                            
+                            <th style = " text-align: center;">Created By</th>  
+                            <th style = " text-align: center;">Status</th>  
+                            <th style = " text-align: center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             
@@ -94,7 +94,7 @@
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
 </div>  
-<!-- tidak menggunakan ini karen muncul tes 1 di select padahal udah di hapus-->
+<!-- tidak menggunakan ini karena muncul tes 1 di select padahal udah di hapus-->
 <!-- 'backend.webpages_distribusi.distribusi_jabatan.modal-add'-->
 @include('backend.webpages_distribusi.distribusi_jabatan.modal-add-new') 
 @include('backend.webpages_distribusi.distribusi_jabatan.modal-update') 

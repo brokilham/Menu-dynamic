@@ -1,4 +1,4 @@
-<div class="modal fade bs-modal-sm" id="modal-update" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade bs-modal-sm" id="modal-update-mstr-kelas" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +6,7 @@
                 <h4 class="modal-title">Modal Title</h4>
             </div>
             <div class="modal-body">
-                <form id = "frm-update-mstr-privilages" class="form-horizontal" role="form" method="POST">
+                <form id = "frm-update-mstr-kelas" class="form-horizontal" role="form" method="POST">
                     <div class="form-body">
                         <div class="form-group">
                             <label class="col-md-3 control-label">Kelas</label>

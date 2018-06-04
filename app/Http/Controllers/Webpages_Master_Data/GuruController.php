@@ -43,11 +43,9 @@ class GuruController extends Controller
             $User->email = $request->txt_id;
             $User->password = Hash::make($request->txt_id);
             $User->login_as = "-";
-            $User->status = "active";
+            $User->login_at = "-";
+            $User->status = "non_active";
             $User->save();
-
-            //$UserUSer   = ($User == TRUE)? "S":"F";
-            //$resultGuru = ($mstr_guru == TRUE)? "S":"F";
 
             if(($mstr_guru == TRUE) && ($User== TRUE)){
                 DB::commit();

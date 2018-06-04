@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-add" name = "modal-add" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal fade" id="modal-add-mstr-siswa" name = "modal-add-mstr-siswa" tabindex="-1" role="basic" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
@@ -16,7 +16,8 @@
                             </div>
                             <div class="portlet-body form">
                                 <!--<form class="form-horizontal" action="#" id="submit_form" method="POST">-->
-                                <form class="form-horizontal" action="#"  id = "frm-add-mstr-siswa" method="POST">                                                 
+                                <form class="form-horizontal" action="#"  id = "frm-add-mstr-siswa" method="POST" enctype="multipart/form-data">                                                            
+                                   <!-- {!! csrf_field() !!} -->
                                     <div class="form-wizard">
                                         <div class="form-body">
                                             <ul class="nav nav-pills nav-justified steps">
@@ -34,6 +35,13 @@
                                                             <i class="fa fa-check"></i> Data Walimurid </span>
                                                     </a>
                                                 </li>
+                                                <li>
+                                                    <a href="#tab3" data-toggle="tab" class="step">
+                                                        <span class="number"> 3 </span>
+                                                        <span class="desc">
+                                                            <i class="fa fa-check"></i> Konfirmasi Data </span>
+                                                    </a>
+                                                </li>
                                             </ul>
                                             <div id="bar" class="progress progress-striped" role="progressbar">
                                                 <div class="progress-bar progress-bar-success"> </div>
@@ -49,7 +57,7 @@
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-9">
-                                                            <input type="number" class="form-control" name="txt_sis_nis" id="txt_sis_nis"/>
+                                                            <input type="text" class="form-control" name="txt_sis_nis" id="txt_sis_nis"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -68,17 +76,19 @@
                                                         <div class="col-md-9">
                                                             <!--<input type="text" class="form-control" name="email" />-->
                                                             <select class="form-control" name="txt_sis_jenis_kelamin" id="txt_sis_jenis_kelamin">
-                                                                <option>Pria</option>
-                                                                <option>Perempuan</option>
+                                                                <option value = "">Pilih Jenis Kelamin</option>
+                                                                <option value = "pria">Pria</option>
+                                                                <option value = "perempuan">Perempuan</option>
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3">Foto
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-9">
-                                                            <input type="text" class="form-control" name="txt_sis_path_foto" id="txt_sis_path_foto" />           
+                                                            <input type="file" class="form-control" name="txt_sis_path_foto" id="txt_sis_path_foto" accept="image/Jpeg" />           
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -105,7 +115,7 @@
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-9">
-                                                            <input type="email" class="form-control" name="txt_sis_email" id="txt_sis_email" />                                     
+                                                            <input type="text" class="form-control" name="txt_sis_email" id="txt_sis_email" />                                     
                                                         </div>
                                                     </div>  
                                                     <div class="form-group">
@@ -132,8 +142,9 @@
                                                         </label>
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="txt_wal_jenis_kelamin" id="txt_wal_jenis_kelamin">
-                                                                <option value="Pria">Pria</option>
-                                                                <option value="Perempuan">Perempuan</option>
+                                                                <option value="">Pilih Jenis Kelamin</option>
+                                                                <option value="pria">Pria</option>
+                                                                <option value="perempuan">Perempuan</option>
                                                             </select>        
                                                         </div>
                                                     </div>
@@ -143,13 +154,14 @@
                                                         </label>
                                                         <div class="col-md-9">
                                                             <select class="form-control" name="txt_wal_family" id="txt_wal_family">
-                                                                <option value="Ayah">Ayah</option>
-                                                                <option value="Ibu">Ibu</option>
-                                                                <option value="Kakak">Kakak</option>
-                                                                <option value="Kakek">Kakek</option>
-                                                                <option value="Nenek">Nenek</option>
-                                                                <option value="Paman">Paman</option>
-                                                                <option value="Tante">Tante</option>
+                                                                <option value="">Pilih Hubungan Keluarga</option>
+                                                                <option value="ayah">Ayah</option>
+                                                                <option value="ibu">Ibu</option>
+                                                                <option value="kakak">Kakak</option>
+                                                                <option value="kakek">Kakek</option>
+                                                                <option value="nenek">Nenek</option>
+                                                                <option value="paman">Paman</option>
+                                                                <option value="tante">Tante</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -166,15 +178,100 @@
                                                             <span class="required"> * </span>
                                                         </label>
                                                         <div class="col-md-9">
-                                                            <input type="number" class="form-control" name="txt_wal_no_telp" id="txt_wal_no_telp" />
+                                                            <input type="text" class="form-control" name="txt_wal_no_telp" id="txt_wal_no_telp" />
                                                          </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label class="control-label col-md-3">Email</label>
+                                                        <label class="control-label col-md-3">Email
+                                                            <span class="required"> * </span>
+                                                        </label>
                                                         <div class="col-md-9">
-                                                            <input type="email" class="form-control" name="txt_Wal_email" id="txt_wal_email" />
+                                                            <input type="text" class="form-control" name="txt_Wal_email" id="txt_wal_email" />
                                                         </div>
                                                     </div>
+                                                </div> 
+                                                <div class="tab-pane" id="tab3">
+                                                    <h3 class="block">KOnfirmasi data yang akan disimpan</h3>
+                                                        <h4 class="form-section">Data Siswa</h4>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">NIS:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_nis"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Nama:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_nama"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Jenis Kelamin:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_jenis_kelamin"> </p>
+                                                            </div>
+                                                        </div>       
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Alamat:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_alamat"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">No telpon:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_no_telp"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Email:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_email"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Hobi:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_sis_hobi"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <h4 class="form-section">Data Walimurid</h4>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Nama:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_wal_nama"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Jenis Kelamin:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_wal_jenis_kelamin"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Hubungan keluarga:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_wal_family"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Pekerjaan:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_wal_pekerjaan"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">No telpon:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_wal_no_telp"> </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Email:</label>
+                                                            <div class="col-md-4">
+                                                                <p class="form-control-static" data-display="txt_Wal_email"> </p>
+                                                            </div>
+                                                        </div>                                                
                                                 </div>                                             
                                             </div>
                                         </div>
@@ -200,6 +297,7 @@
                     </div>
                 </div>                  
             </div>
+        </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->

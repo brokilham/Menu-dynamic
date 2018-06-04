@@ -21,11 +21,16 @@ class JabatanController extends Controller
       
         try
         {
-           
+            $login_at= "web";
+            if(($request->txt_login_as!= "guru_bk")||($request->txt_login_as!= "administrator")){
+                $login_at = "mobile";
+            }
             $mstr_jabatan = new mstr_jabatan;
-            $mstr_jabatan->nama = $request->txt_name;
+            $mstr_jabatan->nama = strtoupper($request->txt_name);
             $mstr_jabatan->created_by =  Auth::user()->id;
             $mstr_jabatan->status = "active";  
+            $mstr_jabatan->login_as = $request->txt_login_as;
+            $mstr_jabatan->login_at = $login_at; 
             $mstr_jabatan->save();
             
             $result = ($mstr_jabatan == TRUE)? "S":"F";
@@ -42,7 +47,7 @@ class JabatanController extends Controller
     public function update(Request $request){
         try{
            
-            $return =   mstr_jabatan::where('id', $request->txt_id_updt)->update(['nama' => $request->txt_nama_updt]);
+            $return =   mstr_jabatan::where('id', $request->txt_id_updt)->update(['nama' => strtoupper($request->txt_nama_updt)]);
             $result = ($return == 1)? "S":"F";
             $message = "-";
           }

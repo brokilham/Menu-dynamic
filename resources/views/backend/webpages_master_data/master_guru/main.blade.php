@@ -35,14 +35,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add" class="btn sbold green" data-toggle="modal"> Add New
+                                <button id="call-modal-add-guru" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
-                                <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                <button style = "display:none" class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right">
@@ -66,15 +66,15 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_master_guru">
                     <thead>
                         <tr>                           
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Alamat</th>
-                            <th>No Telp</th>
-                            <th>Email</th>
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>  
-                            <th>Status</th>  
+                            <th  style = " text-align: center;">Id</th>
+                            <th  style = " text-align: center;">Nama</th>
+                            <th  style = " text-align: center;">Alamat</th>
+                            <th  style = " text-align: center;">No Telp</th>
+                            <th  style = " text-align: center;">Email</th>
+                            <th  style = " text-align: center;">Created Date</th>
+                            <th  style = " text-align: center;">Updated Date</th>                            
+                            <th  style = " text-align: center;">Created By</th>  
+                            <th  style = " text-align: center;">Status</th>  
                             <th>Actions</th>
                         </tr>
                     </thead>

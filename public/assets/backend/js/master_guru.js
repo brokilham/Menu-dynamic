@@ -1,31 +1,44 @@
 $(document).ready(function(){
 
     // begin add section ==========================================
-    $("#call-modal-add").click(function(){
-        $('#modal-add').modal('show');
+    $("#call-modal-add-guru").click(function(){
+
+        $('#frm-add-mstr-guru').trigger("reset");
+        reset_color_form("frm-add-mstr-guru");
+        $('#modal-add-mstr-guru').modal('show');
     });
 
-    $("#btn-submit-mstr-guru").click(function(){
-    
-        $.ajax({
-            type:"POST",
-            url:'./create',
-            data:$('#frm-add-mstr-guru').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
-            success: function(data){           
-                if (data.code == "S"){
-                    location.reload();
-                }  
-                else{
-                    alert(data.message);
-                }
+    $("#btn-submit-mstr-guru").click(function(){      
+        
+        /*var text_valid   = Check_text_input();
+        var number_valid = Check_number_input();
+        var email_valid = Check_email_input();*/
 
-            },
-            error: function(data){
-                alert(data.responseText);
-            }
-        });
+        var text_valid   = Check_text_input("frm-add-mstr-guru");
+        var number_valid = Check_number_input("frm-add-mstr-guru");
+        var email_valid = Check_email_input("frm-add-mstr-guru");
+
+        if((text_valid == true) && (email_valid == true) && (number_valid == true)) {
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-mstr-guru').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){           
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
+                }
+            });
+        }
     });  
     // end add section ============================================
 
@@ -108,11 +121,14 @@ $(document).ready(function(){
             { data: 'updated_at' },          
             { data: 'created_by' },
             { data: 'status' },
-            { data: null },
+            { data: null }
            
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {className: "dt-center", 
+             targets:  [ 0,1,2,3,4,5,6,7,8 ]
+            },
             {
                 targets: [ 8 ],
                 visible: false
@@ -126,19 +142,19 @@ $(document).ready(function(){
                     if(type === 'display'){
                         data = '<div class="btn-group">'+
                                     '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
-                                    '<i class="fa fa-angle-down"></i>'+
-                                '</button>'+
-                                '<ul class="dropdown-menu" role="menu">'+
-                                    '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['nama']+'|'+full['alamat']+'|'+full['no_telp']+'|'+full['email']+'>'+
-                                            '<i class="icon-docs"></i>Update</a>'+
-                                    '</li>'+
-                                    '<li>'+
-                                        '<a id="anchor_delete" value='+full['id']+' >'+
-                                            '<i class="icon-tag"></i>Delete</a>'+
-                                    '</li>'+                                       
-                                '</ul>'+
-                            '</div>';
+                                        '<i class="fa fa-angle-down"></i>'+
+                                    '</button>'+
+                                    '<ul class="dropdown-menu" role="menu">'+
+                                        '<li>'+
+                                            '<a id="anchor_update" value='+full['id']+'|'+full['nama']+'|'+full['alamat']+'|'+full['no_telp']+'|'+full['email']+'>'+
+                                                '<i class="icon-docs"></i>Update</a>'+
+                                        '</li>'+
+                                        '<li>'+
+                                            '<a id="anchor_delete" value='+full['id']+' >'+
+                                                '<i class="icon-tag"></i>Delete</a>'+
+                                        '</li>'+                                       
+                                    '</ul>'+
+                                '</div>';
                     }
 
                     return data;
@@ -149,3 +165,89 @@ $(document).ready(function(){
   
     // end datatable section ============================================
 });
+
+/*function reset_color_form(){
+    $('input[type="number"].required').css({
+        background: "",
+        border: "",
+        color: "black"
+    });
+
+    $('input[type="email"].required').css({
+        background: "",
+        border: "",
+        color: "black"
+    });
+
+    $('input[type="text"].required').css({
+        background: "",
+        border: "",
+        color: "black"
+    });
+}
+
+function Check_number_input(){
+    var isValid = true;
+    $('input[type="number"].required').each(function() {
+        if ($.trim($(this).val()) == '') {
+            isValid = false;
+            $(this).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+    return isValid;      
+}
+
+
+function Check_email_input(){
+    var isValid = true;
+    $('input[type="email"].required').each(function() {
+        if ($.trim($(this).val()) == '') {
+            isValid = false;
+            $(this).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+    return isValid;      
+}
+
+function Check_text_input(){
+    var isValid = true;
+    $('input[type="text"].required').each(function() {
+        if ($.trim($(this).val()) == '') {
+            isValid = false;
+            $(this).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+    if (isValid == false) 
+        e.preventDefault();
+    else 
+        alert('Thank you for submitting');
+       
+    return isValid;      
+}*/

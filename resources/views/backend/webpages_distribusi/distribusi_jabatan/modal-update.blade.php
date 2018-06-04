@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">A Fairly Long Modal</h4>
+                <h4 class="modal-title">Perbarui Jabatan Untuk guru</h4>
             </div>
             <div class="modal-body">
                 <form id = "frm-update-distribusi-jabatan" class="form-horizontal" role="form" method="POST">

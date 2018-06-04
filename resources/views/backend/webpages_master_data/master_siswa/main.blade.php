@@ -8,11 +8,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Master Data</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Master Siswa</span>
         </li>
     </ul>
 </div>
@@ -35,13 +35,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add" class="btn sbold green" data-toggle="modal"> Add New
+                                <button id="call-modal-add-mstr-siswa" class="btn sbold green" data-toggle="modal"> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="btn-group pull-right">
+                            <div class="btn-group pull-right" style="display:none">
                                 <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                     <i class="fa fa-angle-down"></i>
                                 </button>
@@ -66,15 +66,15 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_master_siswa">
                     <thead>
                         <tr>                           
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>                          
-                            <th>Status</th>  
-                            <th>Details</th>  
-                            <th>Actions</th>
+                            <th style = " text-align: center;">Id</th>
+                            <th style = " text-align: center;">Nama</th>
+                            <th style = " text-align: center;">Jenis Kelamin</th>
+                            <th style = " text-align: center;">Created Date</th>
+                            <th style = " text-align: center;">Updated Date</th>                            
+                            <th style = " text-align: center;">Created By</th>                          
+                            <th style = " text-align: center;">Status</th>  
+                            <th style = " text-align: center;">Details</th>  
+                            <th style = " text-align: center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             

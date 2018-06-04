@@ -24,16 +24,24 @@ class KelasController extends Controller
       
         try
         {
-   
-            $mstr_kelas = new mstr_kelas;
-            $mstr_kelas->kelas = $request->txt_kelas;
-            $mstr_kelas->ruang = $request->txt_ruang;
-            $mstr_kelas->created_by =  Auth::user()->id;
-            $mstr_kelas->status = "active";  
-            $mstr_kelas->save();
-            
-            $result = ($mstr_kelas == TRUE)? "S":"F";
-            $message = "-";
+            $DataExist = mstr_kelas::where('kelas', $request->txt_kelas)->where('ruang', $request->txt_ruang)->first();
+            if($DataExist == null){
+                $mstr_kelas = new mstr_kelas;
+                $mstr_kelas->kelas = $request->txt_kelas;
+                $mstr_kelas->ruang = strtoupper($request->txt_ruang);
+                $mstr_kelas->created_by =  Auth::user()->id;
+                $mstr_kelas->status = "active";  
+                $mstr_kelas->save();
+                
+                $result = ($mstr_kelas == TRUE)? "S":"F";
+                $message = "-";
+            }else{
+                $return =   mstr_kelas::where('id', $DataExist->id)->update(
+                    ['status' => 'active']);
+                $result = ($return == 1)? "S":"F";
+                $message = "-";
+            }
+          
         }
         catch(Exception $e){
             $result = "E";

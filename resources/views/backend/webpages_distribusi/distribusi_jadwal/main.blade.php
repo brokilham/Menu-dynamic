@@ -65,7 +65,8 @@
                 </div>
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_jadwal">
                     <thead>
-                        <tr>                           
+                        <tr>
+                            <!--                           
                             <th>Id</th>
                             <th>Hari</th>
                             <th>Jam mulai</th>
@@ -75,6 +76,15 @@
                             <th>Created By</th>  
                             <th>Status</th>  
                             <th>Actions</th>
+                            -->
+                            <th>Id</th>
+                            <th>Id jadwal</th>                          
+                            <th>Created Date</th>
+                            <th>Updated Date</th>                            
+                            <th>Created By</th>  
+                            <th>Status</th>  
+                            <th>Actions</th>
+                           
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             

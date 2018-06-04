@@ -3,8 +3,9 @@ $(document).ready(function(){
 
     // begin add section ==========================================
 
-    $("#call-modal-add").click(function(){
-
+    $("#call-modal-add-mstr-jadwal").click(function(){
+        $('#frm-add-mstr-jadwal').trigger("reset");
+        reset_color_form("frm-add-mstr-jadwal");
         if($('#slc_jam option').length < 2){
             $.ajax({
                 type:"GET",
@@ -30,14 +31,38 @@ $(document).ready(function(){
         else{
             $('#modal-add-mstr-jadwal').modal('show');
         }
-
-        
+       
     });
 
       
     $("#btn-submit-mstr-jadwal").click(function(){
 
-        if($('#slc_hari').val() != '' || $('#slc_jam').val() != '' ){
+        var select_valid   =  Check_select_input("frm-add-mstr-jadwal");
+        if(select_valid == true){
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-mstr-jadwal').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){      
+                    //console.log(data);     
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
+                }
+            });
+      
+        }
+          
+        /*if($('#slc_hari').val() != '' || $('#slc_jam').val() != '' ){
             $.ajax({
                 type:"POST",
                 url:'./create',
@@ -62,7 +87,7 @@ $(document).ready(function(){
         else
         {
            alert("pastikan hari dan jam telah anda pilih !!!"); 
-        }
+        }*/
     }); 
     
     // end add section ==========================================
@@ -104,7 +129,8 @@ $(document).ready(function(){
           
             { data: 'id' },
             { data: 'hari' },
-            { data: 'jam' },
+            { data: 'mstr_jam.jam_mulai' },
+            { data: 'mstr_jam.jam_selesai' },
             { data: 'created_by' },
             { data: 'created_at' },
             { data: 'updated_at' },          
@@ -115,13 +141,17 @@ $(document).ready(function(){
         scrollCollapse: true,      
         columnDefs: [ 
             {
-                targets: [ 6 ],
+                className: "dt-center", 
+                targets:  [ 0,1,2,3,4,5,6,7]
+            }, 
+            {
+                targets: [ 7 ],
                 visible: false
             },
             {
                 searchable: false,
                 orderable: false,
-                targets: 7,
+                targets: 8,
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){

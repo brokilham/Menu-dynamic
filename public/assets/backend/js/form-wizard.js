@@ -35,97 +35,58 @@ var FormWizard = function () {
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
 
-                    /*
-                       txt_sis_nis: {
-                        minlength: 5,
-                        required: true
-                    },
-                    */
 
                     txt_sis_nis: {
-                        minlength: 5,
-                        required: true
-                    },
-                    txt_nama: {
-                        minlength: 5,
-                        required: true
-                    },
-                    txt_jenis_kelamin: {
-                        minlength: 1,
-                        required: true
-                    },
-                    txt_path_foto: {
-                        minlength: 5,
-                        required: true
-                    },
-                    txt_alamat: {
-                        minlength: 5,
-                        required: true
-                    },
-                    txt_hobi: {
-                        minlength: 5,
-                        required: true
-                    },
-                    
-                    //account
-                    /*username: {
-                        minlength: 5,
-                        required: true
-                    },
-                    password: {
-                        minlength: 5,
-                        required: true
-                    },
-                    rpassword: {
-                        minlength: 5,
                         required: true,
-                        equalTo: "#submit_form_password"
-                    },*/
-                    //profile
-                    /*fullname: {
-                        required: true
+                        number:true
                     },
-                    email: {
-                        required: true,
+                    txt_sis_nama:{
+                        required:true
+                    },
+                    txt_sis_jenis_kelamin:{
+                        required:true
+                    },
+                    txt_sis_path_foto:{
+                        required:true
+                    },
+                    txt_sis_alamat:{
+                        required:true
+                    },
+                    txt_sis_no_telp:{
+                        required:true,
+                        number:true
+                    },
+                    txt_sis_email:{
+                        required:true,
                         email: true
                     },
-                    phone: {
-                        required: true
+                    txt_sis_hobi:{
+                        required:true
                     },
-                    gender: {
-                        required: true
+                    txt_wal_nama:{
+                        required:true
                     },
-                    address: {
-                        required: true
+                    txt_wal_jenis_kelamin:{
+                        required:true
                     },
-                    city: {
-                        required: true
+                    txt_wal_family:{
+                        required:true
                     },
-                    country: {
-                        required: true
+                    txt_wal_pekerjaan:{
+                        required:true
                     },
-                    //payment
-                    card_name: {
-                        required: true
+                    txt_wal_no_telp:{
+                        required:true,
+                        number:true
                     },
-                    card_number: {
-                        minlength: 16,
-                        maxlength: 16,
-                        required: true
-                    },
-                    card_cvc: {
-                        digits: true,
-                        required: true,
-                        minlength: 3,
-                        maxlength: 4
-                    },
-                    card_expiry_date: {
-                        required: true
-                    },
-                    'payment[]': {
-                        required: true,
-                        minlength: 1
-                    }*/
+                    txt_Wal_email:{
+                        required:true,
+                        email: true
+                    }
+                    
+                    
+                                       
+                
                 },
 
                 messages: { // custom messages for radio buttons and checkboxes
@@ -182,12 +143,12 @@ var FormWizard = function () {
             });
 
             var displayConfirm = function() {
-                $('#tab4 .form-control-static', form).each(function(){
+                $('#tab3 .form-control-static', form).each(function(){
+
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
-                    }
-                    if (input.is(":text") || input.is("textarea")) {
+                    }if (input.is(":text") || input.is("textarea") || input.is("email")) {
                         $(this).html(input.val());
                     } else if (input.is("select")) {
                         $(this).html(input.find('option:selected').text());

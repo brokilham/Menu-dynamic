@@ -2,7 +2,11 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-jabatan").click(function(){
-        if($('#slc_nama_siswa option').length < 1){
+        
+        $('#frm-add-distribusi-jabatan').trigger("reset");
+        reset_color_form("frm-add-distribusi-jabatan");
+      
+        if($('#slc_nama_guru option').length < 2){
             $.ajax({          
                 type:'GET',
                 url:'./get_select_option_guru_jabatan',
@@ -22,7 +26,7 @@ $(document).ready(function(){
                         }
 
                       }
-                    if($('#slc_jabatan option').length < 1){
+                    if($('#slc_jabatan option').length < 2){
                         var DatalistJabatanRaw,DatalistJabatanJson;
                         
                         for (i = 0; i < data.list_jabatan.length; i++){ 
@@ -59,32 +63,36 @@ $(document).ready(function(){
                 $('#btn-submit-distribusi-jabatan').prop('disabled', false);
             }
         }
-       
-
     });
 
     
     $("#btn-submit-distribusi-jabatan").click(function(){
-        $.ajax({
-            type:"POST",
-            url:'./create',
-            data:$('#frm-add-distribusi-jabatan').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
-            success: function(data){      
-                //console.log(data);     
-                if (data.code == "S"){
-                    location.reload();
-                }  
-                else{
-                    alert(data.message);
+       
+        var select_valid   = Check_select_input("frm-add-distribusi-jabatan");
+        if(select_valid == true){
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-distribusi-jabatan').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){      
+                    //console.log(data);     
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
                 }
-
-            },
-            error: function(data){
-                alert(data.responseText);
-            }
-        });
+            });
+        }
+       
+        
     }); 
     // end add section ============================================
 
@@ -157,12 +165,12 @@ $(document).ready(function(){
 
     // begin delete section ==========================================
     $("#dt_distribusi_jabatan").on("click", "#anchor_delete", function(){
-        
+        var param = $(this).attr('value').split('|');
         $.ajax({
             type:"POST",
             url:'./delete',
             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            data:{id:$(this).attr('value')},
+            data:{id:param[0],id_guru:param[1]},
             // dataType: 'json',
             success: function(data){             
                 //alert(data.code+" "+data.message);
@@ -201,6 +209,9 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {className: "dt-center", 
+             targets:  [ 0,1,2,3,4,5 ]
+            },
             {
                 targets: [ 6 ],
                 visible: false
@@ -212,8 +223,12 @@ $(document).ready(function(){
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
+                        var AccesButton = "";
+                        if(full['login_as'] != "administrator"){
+                            AccesButton = "disabled";
+                        }
                         data = '<div class="btn-group">'+
-                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
+                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" '+ AccesButton+'> Actions'+
                                     '<i class="fa fa-angle-down"></i>'+
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+
@@ -222,7 +237,7 @@ $(document).ready(function(){
                                             '<i class="icon-docs"></i>Update</a>'+
                                     '</li>'+
                                     '<li>'+
-                                        '<a id="anchor_delete" value='+full['id']+' >'+
+                                        '<a id="anchor_delete" value='+full['id']+'|'+full['id_guru']+' >'+
                                             '<i class="icon-tag"></i>Delete</a>'+
                                     '</li>'+                                       
                                 '</ul>'+

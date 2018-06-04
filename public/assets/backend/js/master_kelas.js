@@ -1,30 +1,36 @@
 $(document).ready(function(){
 
     // begin add section ==========================================
-    $("#call-modal-add").click(function(){
-        $('#modal-add').modal('show');
+    $("#call-modal-add-mstr-kelas").click(function(){
+        $('#frm-add-mstr-kelas').trigger("reset");
+        reset_color_form("frm-add-mstr-kelas");
+        $('#modal-add-mstr-kelas').modal('show');
     });
 
     $("#btn-submit-mstr-kelas").click(function(){
-       
-        $.ajax({
-            type:"POST",
-            url:'./create',
-            data:$('#frm-add-mstr-kelas').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
-            success: function(data){           
-                if (data.code == "S"){
-                    location.reload();
-                }else{
-                    alert(data.message); 
-                }  
-
-            },
-            error: function(data){
-                alert(data.responseText);
-            }
-        });
+        var text_valid   =  Check_text_input("frm-add-mstr-kelas");
+        var select_valid   =  Check_select_input("frm-add-mstr-kelas");
+        if((text_valid == true) && (select_valid == true)){
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-mstr-kelas').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){           
+                    if (data.code == "S"){
+                        location.reload();
+                    }else{
+                        alert(data.message); 
+                    }  
+    
+                },
+                error: function(data){
+                    alert(data.message);
+                }
+            });
+        }
+        
     }); 
     // end add section ============================================
 
@@ -34,7 +40,7 @@ $(document).ready(function(){
         $('#txt_id_updt').val(param[0]);  
         $('#txt_kelas_updt').val(param[1]);
         $('#txt_ruang_updt').val(param[2]);
-        $('#modal-update').modal('show');      
+        $('#modal-update-mstr-kelas').modal('show');      
     });
 
     
@@ -109,6 +115,9 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {className: "dt-center", 
+                 targets:  [ 0,1,2,3,4,5,6]
+            }, 
             {
                 targets: [ 6 ],
                 visible: false
@@ -120,21 +129,22 @@ $(document).ready(function(){
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
+                        // update sengaja di hidden, karena id kelas pasti fix dengan ruang dan kelas itu
                         data = '<div class="btn-group">'+
                                     '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
-                                    '<i class="fa fa-angle-down"></i>'+
-                                '</button>'+
-                                '<ul class="dropdown-menu" role="menu">'+
-                                    '<li>'+
-                                        '<a id="anchor_update" value='+full['id']+'|'+full['kelas']+'|'+full['ruang']+'>'+
-                                            '<i class="icon-docs"></i>Update</a>'+
-                                    '</li>'+
-                                    '<li>'+
-                                        '<a id="anchor_delete" value='+full['id']+' >'+
-                                            '<i class="icon-tag"></i>Delete</a>'+
-                                    '</li>'+                                       
-                                '</ul>'+
-                            '</div>';
+                                        '<i class="fa fa-angle-down"></i>'+
+                                    '</button>'+
+                                    '<ul class="dropdown-menu" role="menu">'+
+                                        '<li style="display:none">'+
+                                            '<a id="anchor_update" value='+full['id']+'|'+full['kelas']+'|'+full['ruang']+'>'+
+                                                '<i class="icon-docs"></i>Update</a>'+
+                                        '</li>'+
+                                        '<li>'+
+                                            '<a id="anchor_delete" value='+full['id']+' >'+
+                                                '<i class="icon-tag"></i>Delete</a>'+
+                                        '</li>'+                                       
+                                    '</ul>'+
+                               '</div>';
                     }
 
                     return data;

@@ -29,7 +29,6 @@ return array(
     'App\\Http\\Controllers\\Webpages_Pelanggaran\\TransaksiPelanggaran' => $baseDir . '/app/Http/Controllers/Webpages_Pelanggaran/TransaksiPelanggaran.php',
     'App\\Http\\Controllers\\Webpages_Settings\\SettingsController' => $baseDir . '/app/Http/Controllers/Webpages_Settings/SettingsController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
-    'App\\Http\\Middleware\\CheckStatusUSer' => $baseDir . '/app/Http/Middleware/CheckStatusUSer.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',

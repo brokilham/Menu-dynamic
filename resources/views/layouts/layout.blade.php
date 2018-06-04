@@ -117,7 +117,7 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <!--<script src="{{URL::asset('/assets/backend/pages/scripts/dashboard.min.js')}}" type="text/javascript"></script>-->
         <script src="{{URL::asset('/assets/backend/pages/scripts/table-datatables-managed.min.js')}}" type="text/javascript"></script>
-        <script src="{{URL::asset('/assets/backend/pages/scripts/form-wizard.js')}}" type="text/javascript"></script>
+        <!--<script src="{{URL::asset('/assets/backend/pages/scripts/form-wizard.js')}}" type="text/javascript"></script>-->
         <script src="{{URL::asset('/assets/backend/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>  
         <script src="{{URL::asset('/assets/backend/pages/scripts/components-select2.min.js')}}" type="text/javascript"></script>              
         <!-- END PAGE LEVEL SCRIPTS -->
@@ -128,6 +128,7 @@
         <!-- END THEME LAYOUT SCRIPTS -->
 
         <!-- BEGIN PROCESS SCRIPT -->
+        <script src="{{URL::asset('/assets/backend/js/form-wizard.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/js/dashboard.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/master_privilages.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/master_kelas.js')}}" type="text/javascript"></script> 
@@ -142,8 +143,10 @@
         <script src="{{URL::asset('/assets/backend/js/transaksi_pelanggaran.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_pengajuan.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_realisasi.js')}}" type="text/javascript"></script>    
+        <script src="{{URL::asset('/assets/backend/js/global_function.js')}}" type="text/javascript"></script>    
         <!-- END PROCESS SCRIPT -->
 
+ 
 
     </body>
 </html>

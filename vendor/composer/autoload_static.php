@@ -374,7 +374,6 @@ class ComposerStaticInit65f92a6f935d6f4ec2c9129cd669f50b
         'App\\Http\\Controllers\\Webpages_Pelanggaran\\TransaksiPelanggaran' => __DIR__ . '/../..' . '/app/Http/Controllers/Webpages_Pelanggaran/TransaksiPelanggaran.php',
         'App\\Http\\Controllers\\Webpages_Settings\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Webpages_Settings/SettingsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
-        'App\\Http\\Middleware\\CheckStatusUSer' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckStatusUSer.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
