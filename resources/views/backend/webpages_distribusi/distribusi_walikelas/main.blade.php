@@ -8,11 +8,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Distribusi</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Distribusi Walikelas</span>
         </li>
     </ul>
 </div>
@@ -66,15 +66,15 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_walikelas">
                     <thead>
                         <tr>                           
-                            <th>Id</th>
-                            <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Ruang</th>
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>  
-                            <th>Status</th>  
-                            <th>Actions</th>
+                            <th style = " text-align: center;">Id</th>
+                            <th style = " text-align: center;">Nama</th>
+                            <th style = " text-align: center;">Kelas</th>
+                            <th style = " text-align: center;">Ruang</th>
+                            <th style = " text-align: center;">Created Date</th>
+                            <th style = " text-align: center;">Updated Date</th>                            
+                            <th style = " text-align: center;">Created By</th>  
+                            <th style = " text-align: center;">Status</th>  
+                            <th style = " text-align: center;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             

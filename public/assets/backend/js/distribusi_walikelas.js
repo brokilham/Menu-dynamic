@@ -2,7 +2,9 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-walikelas").click(function(){
-        if($('#slc_nama_guru option').length < 1){
+        $('#frm-add-distribusi-walikelas').trigger("reset");
+        reset_color_form("frm-add-distribusi-walikelas");
+        if($('#slc_nama_guru option').length < 2){
             $.ajax({          
                 type:'GET',
                 url:'./get_select_option_walikelas_kelas',
@@ -23,7 +25,7 @@ $(document).ready(function(){
                             $('#txt_id_jabatan').val(DatalistWalikelasJson.t_distribusi_jabatan.mstr_jabatan.id); 
                         }
                     }
-                    if($('#slc_kelas option').length < 1){
+                    if($('#slc_kelas option').length < 2){
                         var DatalistKelasRaw,DatalistKelasJson;
                         for (i = 0; i < data.list_kelas.length; i++){ 
                             DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
@@ -36,12 +38,12 @@ $(document).ready(function(){
                    
                     $('#modal-add-distribusi-walikelas').modal('show');
 
-                    if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
+                    /*if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
                         $('#btn-submit-distribusi-walikelas').prop('disabled', true);
                     }
                     else{
                         $('#btn-submit-distribusi-walikelas').prop('disabled', false);
-                    }
+                    }*/
 
                    }else{
                     alert("Data master walikelas kosong !!!");     
@@ -54,38 +56,44 @@ $(document).ready(function(){
         }else{
             $('#modal-add-distribusi-walikelas').modal('show');
          
-            if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
+            /*if(($('#slc_nama_guru option').length < 1)||($('#slc_kelas option').length < 1)){
                 $('#btn-submit-distribusi-walikelas').prop('disabled', true);
             }
             else{
                 $('#btn-submit-distribusi-walikelas').prop('disabled', false);
-            }
+            }*/
         }
        
 
     });
 
     $("#btn-submit-distribusi-walikelas").click(function(){
-        $.ajax({
-            type:"POST",
-            url:'./create',
-            data:$('#frm-add-distribusi-walikelas').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
-            success: function(data){      
-                //console.log(data);     
-                if (data.code == "S"){
-                    location.reload();
-                }  
-                else{
-                    alert(data.message);
-                }
 
-            },
-            error: function(data){
-                alert(data.responseText);
-            }
-        });
+        var select_valid   = Check_select_input("frm-add-distribusi-walikelas");
+        if(select_valid == true){
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-distribusi-walikelas').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){      
+                    //console.log(data);     
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
+                }
+            });
+
+        }
+     
     });
     // end add section ============================================
 
@@ -208,6 +216,10 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {
+                className: "dt-center", 
+                targets:  [ 0,1,2,3,4,5,6,7 ]
+            },
             {
                 targets: [ 7 ],
                 visible: false

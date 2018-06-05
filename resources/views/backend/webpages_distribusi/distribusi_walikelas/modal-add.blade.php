@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">A Fairly Long Modal</h4>
+                <h4 class="modal-title">Tentukan pembagian kelas untuk walikelas</h4>
             </div>
             <div class="modal-body">
                 <form id = "frm-add-distribusi-walikelas" class="form-horizontal" role="form" method="POST">
@@ -19,6 +19,7 @@
                             <label class="col-md-2 control-label">Nama Guru</label>
                             <div class="col-md-10">
                                 <select class="form-control" id= "slc_nama_guru" name ="slc_nama_guru">                 
+                                    <option value="">Pilih guru </option>
                                 </select>
                             </div>
                         </div> 
@@ -26,6 +27,7 @@
                             <label class="col-md-2 control-label">Kelas</label>
                             <div class="col-md-10">
                                 <select class="form-control" id= "slc_kelas" name ="slc_kelas">                 
+                                    <option value="">Pilih kelas</option>
                                 </select>
                             </div>
                         </div>                     
