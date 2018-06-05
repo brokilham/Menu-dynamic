@@ -8,7 +8,7 @@ use Exception;
 use App\mstr_jadwal;
 use App\mstr_jam;
 use App\t_distribusi_jadwal;
-
+use Illuminate\Support\Facades\DB;
 class DistribusiJadwalController extends Controller
 {
     public function index()
@@ -75,7 +75,27 @@ class DistribusiJadwalController extends Controller
     public function get_all_distribusi_jadwal(){
         // di join table ini masih ada masalah 
         // hari dan jam ada yang tidak keluar
-        $t_distribusi_jadwal = t_distribusi_jadwal::where('id_guru',Auth::user()->id)->where('status', 'active')->with('mstr_jadwal','mstr_jadwal.mstr_jam')->get(); 
+        //$t_distribusi_jadwal = t_distribusi_jadwal::where('id_guru',Auth::user()->id)->where('status', 'active')->with('mstr_jadwal')->get(); 
+         //return response()->json(['t_distribusi_jadwal' => $t_distribusi_jadwal] ); 
+       
+       $t_distribusi_jadwal =  DB::select("SELECT 
+                                                t_j.id,
+                                                DATE_FORMAT(t_j.created_at, '%d-%m-%Y') AS created_at,
+                                                DATE_FORMAT(t_j.updated_at, '%d-%m-%Y') AS updated_at,
+                                                t_j.created_by,
+                                                t_j.status,
+                                                m_j.hari,
+                                                m_jam.jam_mulai,
+                                                m_jam.jam_selesai
+                                            FROM
+                                                laravel_dynamic_menu.t_distribusi_jadwals AS t_j
+                                            LEFT JOIN
+                                                mstr_jadwals AS m_j ON t_j.id_jadwal = m_j.id
+                                            LEFT JOIN
+                                                mstr_jams AS m_jam ON m_j.jam = m_jam.id
+                                            WHERE id_guru = :id_guru AND t_j.status = :status",
+                                            ['id_guru' => Auth::user()->id,'status' => 'active']);
+       
         return DataTables::of($t_distribusi_jadwal)->make(true);
     }
     

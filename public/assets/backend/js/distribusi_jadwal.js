@@ -4,6 +4,11 @@ $(document).ready(function(){
 
      //memunculkan jam  yanghanya di set oleh admin
      $("#call-modal-add-distribusi-jadwal").click(function(){
+        $('#frm-add-distribusi-jadwal').trigger("reset");
+        reset_color_form("frm-add-distribusi-jadwal");
+        $('#slc_jam').empty();
+        $('#slc_jam').append('<option value="">Pilih jam</option>'); 
+        
         if($('#slc_hari option').length < 2){
             $.ajax({
                 type:"GET",
@@ -80,7 +85,8 @@ $(document).ready(function(){
     });
 
     $("#btn-submit-distribusi-jadwal").click(function(){      
-        if($('#slc_hari').val() != '' || $('#slc_jam').val() != '' ){
+        var select_valid   = Check_select_input("frm-add-distribusi-jadwal");
+        if(select_valid == true){
             $.ajax({
                 type:"POST",
                 url:'./create',
@@ -101,9 +107,7 @@ $(document).ready(function(){
                 }
             });
         }
-        else{
-           alert("pastikan hari dan jam telah anda pilih !!!"); 
-        }
+      
     });
 
   
@@ -185,6 +189,7 @@ $(document).ready(function(){
             } ],
         order: [[ 1, 'asc' ]],
     }).draw();*/
+    
     var table = $("#dt_distribusi_jadwal").DataTable({
         processing: true,
         serverSide: true,
@@ -196,7 +201,9 @@ $(document).ready(function(){
         },
         columns: [        
             { data: 'id' },
-            { data: 'id_jadwal' },
+            { data: 'hari' },
+            { data: 'jam_mulai' },
+            { data: 'jam_selesai' },
             { data: 'created_at' },
             { data: 'updated_at' },
             { data: 'created_by' },          
@@ -206,19 +213,27 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {   className: "dt-center", 
+                targets:  [ 0,1,2,3,4,5,6,7 ]
+            },
             {
-                targets: [ 5 ],
+                targets: [ 7 ],
                 visible: false
             },
             {
                 searchable: false,
                 orderable: false,
-                targets: 6,
+                targets: 8,
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
+
+                        var AccesButton = "";
+                        if(full['login_as'] == "administrator"){
+                            AccesButton = "disabled";
+                        }
                         data = '<div class="btn-group">'+
-                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
+                                    '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" '+ AccesButton+'> Actions'+
                                     '<i class="fa fa-angle-down"></i>'+
                                 '</button>'+
                                 '<ul class="dropdown-menu" role="menu">'+                                

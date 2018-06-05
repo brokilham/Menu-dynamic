@@ -8,11 +8,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Distribusi</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Distribusi Jadwal</span>
         </li>
     </ul>
 </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="btn-group">
-                                <button id="call-modal-add-distribusi-jadwal" class="btn sbold green" data-toggle="modal"> Add New
+                                <button id="call-modal-add-distribusi-jadwal" class="btn sbold green" data-toggle="modal" {{ Auth::user()->login_as == "administrator" ? "disabled" : "" }}> Add New
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -66,24 +66,15 @@
                 <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_distribusi_jadwal">
                     <thead>
                         <tr>
-                            <!--                           
-                            <th>Id</th>
-                            <th>Hari</th>
-                            <th>Jam mulai</th>
-                            <th>Jam selesai</th>
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>  
-                            <th>Status</th>  
-                            <th>Actions</th>
-                            -->
-                            <th>Id</th>
-                            <th>Id jadwal</th>                          
-                            <th>Created Date</th>
-                            <th>Updated Date</th>                            
-                            <th>Created By</th>  
-                            <th>Status</th>  
-                            <th>Actions</th>
+                            <th style = " text-align: center;">Id</th>
+                            <th style = " text-align: center;">Hari</th>
+                            <th style = " text-align: center;">Jam mulai</th>
+                            <th style = " text-align: center;">Jam selesai</th>                       
+                            <th style = " text-align: center;">Created Date</th>
+                            <th style = " text-align: center;">Updated Date</th>                            
+                            <th style = " text-align: center;">Created By</th>  
+                            <th style = " text-align: center;">Status</th>  
+                            <th style = " text-align: center;">Actions</th>
                            
                         </tr>
                     </thead>

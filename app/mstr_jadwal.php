@@ -13,8 +13,13 @@ class mstr_jadwal extends Model
 
     public function t_distribusi_jadwal()
     {
-        return $this->belongsTo('App\t_distribusi_jadwal','id_jadwal');   
+        return $this->hasOne('App\t_distribusi_jadwal','id_jadwal');
     }
+
+    /*public function t_distribusi_jadwal()
+    {
+        return $this->belongsTo('App\t_distribusi_jadwal','id_jadwal');   
+    }*/
 
      // begin convert datetime to date
      public function getCreatedAtAttribute()
