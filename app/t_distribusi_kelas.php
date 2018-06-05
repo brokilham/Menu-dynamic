@@ -16,4 +16,20 @@ class t_distribusi_kelas extends Model
         return $this->belongsTo('App\mstr_kelas','id_kelas');   
     }
 
+      // begin convert datetime to date
+      public function getCreatedAtAttribute()
+      {
+          return \Carbon\Carbon::parse($this->attributes['created_at'])
+          ->format('d-m-Y');
+      }
+  
+      public function getUpdatedAtAttribute()
+      {
+      
+         return \Carbon\Carbon::parse($this->attributes['updated_at'])
+         ->format('d-m-Y');
+      }
+  
+      // end convert datetime to date
+
 }

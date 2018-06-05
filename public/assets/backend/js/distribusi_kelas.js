@@ -2,7 +2,10 @@ $(document).ready(function(){
 
     // begin add section ==========================================
     $("#call-modal-add-distribusi-kelas").click(function(){
-       if($('#slc_nama_siswa option').length < 1){
+
+        $('#frm-add-distribusi-kelas').trigger("reset");
+        reset_color_form("frm-add-distribusi-kelas");
+       if($('#slc_nama_siswa option').length < 2){
             $.ajax({          
                 type:'GET',
                 url:'./get_select_option_siswa_kelas',
@@ -20,7 +23,7 @@ $(document).ready(function(){
                             }
                         }
 
-                        if($('#slc_kelas option').length < 1){
+                        if($('#slc_kelas option').length < 2){
                             var DatalistKelasRaw,DatalistKelasJson;
                             for (i = 0; i < data.list_kelas.length; i++){ 
                                 DatalistKelasRaw = JSON.stringify(data.list_kelas[i]);
@@ -53,12 +56,12 @@ $(document).ready(function(){
        else{
             $('#modal-add-distribusi-kelas').modal('show');
          
-            if(($('#slc_nama_siswa option').length < 1)||($('#slc_kelas option').length < 1)){
+            /*if(($('#slc_nama_siswa option').length < 1)||($('#slc_kelas option').length < 1)){
                 $('#btn-submit-distribusi-kelas').prop('disabled', true);
             }
                 else{
                 $('#btn-submit-distribusi-kelas').prop('disabled', false);
-            }
+            }*/
        }
 
        
@@ -86,26 +89,30 @@ $(document).ready(function(){
      });*/
 
     $("#btn-submit-distribusi-kelas").click(function(){
-        $.ajax({
-            type:"POST",
-            url:'./create',
-            data:$('#frm-add-distribusi-kelas').serialize(),
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
-            dataType: 'json',
-            success: function(data){      
-                //console.log(data);     
-                if (data.code == "S"){
-                    location.reload();
-                }  
-                else{
-                    alert(data.message);
+        var select_valid   = Check_select_input("frm-add-distribusi-kelas");
+        if(select_valid == true){
+            $.ajax({
+                type:"POST",
+                url:'./create',
+                data:$('#frm-add-distribusi-kelas').serialize(),
+                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+                dataType: 'json',
+                success: function(data){      
+                    //console.log(data);     
+                    if (data.code == "S"){
+                        location.reload();
+                    }  
+                    else{
+                        alert(data.message);
+                    }
+    
+                },
+                error: function(data){
+                    alert(data.responseText);
                 }
-
-            },
-            error: function(data){
-                alert(data.responseText);
-            }
-        });
+            });
+        }
+      
     }); 
     // end add section ============================================
 
@@ -224,6 +231,9 @@ $(document).ready(function(){
         ],
         scrollCollapse: true,      
         columnDefs: [ 
+            {className: "dt-center", 
+             targets:  [ 0,1,2,3,4,5,6,7 ]
+            },
             {
                 targets: [ 7 ],
                 visible: false
