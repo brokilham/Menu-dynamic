@@ -80,6 +80,27 @@ $(document).ready(function(){
 
     // end add section ============================================
 
+    // begin delete section ==========================================
+    $("#dt_transaksi_pelanggaran").on("click", "#anchor_delete", function(){         
+        $.ajax({
+            type:"POST",
+            url:'./delete',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+            data:{id:$(this).attr('value')},
+            // dataType: 'json',
+            success: function(data){             
+                //alert(data.code+" "+data.message);
+                if (data.code == "S"){
+                    location.reload();
+                }  
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        });
+    })
+    // end delete section ============================================
+
     // begin datatable section ==========================================
 
      
@@ -147,10 +168,6 @@ $(document).ready(function(){
                                         '<span class="caret"></span>'+
                                             '</button>'+
                                             '<ul class="dropdown-menu" role="menu">'+
-                                                '<li>'+
-                                                    '<a id="anchor_update" value='+full['id']+'>'+
-                                                        '<i class="icon-docs"></i>Update</a>'+
-                                                '</li>'+
                                                 '<li>'+
                                                     '<a id="anchor_delete" value='+full['id']+' >'+
                                                         '<i class="icon-tag"></i>Delete</a>'+

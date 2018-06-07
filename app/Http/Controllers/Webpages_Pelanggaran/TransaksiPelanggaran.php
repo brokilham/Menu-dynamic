@@ -58,25 +58,7 @@ class TransaksiPelanggaran extends Controller
        return response()->json(['code' => $result, 'message' =>$message] );
        //return response()->json(['code' => $request->slc_nama_guru, 'message' =>$request->slc_jabatan] );
     }
- /*
-    public function update(Request $request){
-        try{
-           
-            $return =   t_pelanggaran::where('id', $request->txt_id_updt)->update(
-                ['id_jabatan' => $request->slc_jabatan_updt]
-            );
-            $result = ($return == 1)? "S":"F";
-            $message = "-";
-
-            $message = "-";
-          }
-          catch(Exception $e){
-              $result = "E";
-              $message = $e->getMessage();
-          }          
-          return response()->json(['code' =>  $result, 'message' =>$message] );
-    }
-
+    // update pelanggaran tidak perlu dibikin agar ada historynya, biar dihapus terus bikin lagi
     public function delete(Request $request){
         try{
            
@@ -90,7 +72,7 @@ class TransaksiPelanggaran extends Controller
         }
   
         return response()->json(['code' =>  $result, 'message' =>$message] );
-    }*/
+    }
 
     public function getall_transaksi_pelanggaran(){
         

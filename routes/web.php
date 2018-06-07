@@ -135,6 +135,7 @@ Route::group(['prefix' => 'transaksi_pelanggaran'],function()
     Route::get('/get_select_option_siswa','Webpages_Pelanggaran\TransaksiPelanggaran@get_select_option_siswa');
     Route::get('/getall_transaksi_pelanggaran','Webpages_Pelanggaran\TransaksiPelanggaran@getall_transaksi_pelanggaran');     
     Route::post('/create','Webpages_Pelanggaran\TransaksiPelanggaran@create');
+    Route::post('/delete','Webpages_Pelanggaran\TransaksiPelanggaran@delete');
  });
 
 
