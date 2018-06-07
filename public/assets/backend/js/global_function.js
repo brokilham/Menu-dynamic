@@ -64,6 +64,26 @@ function Check_number_input(FormName){
     return isValid;      
 }
 
+function Check_text_area_input(FormName){
+    var isValid = true;
+
+    $("form#"+FormName+" textarea").each(function() {
+        if ($.trim($(this).val()) == '') {
+            isValid = false;
+            $(this).css({
+                "border": "1px solid red",
+                "background": "#FFCECE"
+            });
+        }
+        else {
+            $(this).css({
+                "border": "",
+                "background": ""
+            });
+        }
+    });
+    return isValid;   
+}
 
 function Check_select_input(FormName){
     var isValid = true;
@@ -86,6 +106,7 @@ function Check_select_input(FormName){
     return isValid;   
 }
 
+
 function reset_color_form(FormName){
     $("form#"+FormName+" input[type=number]").css({
         background: "",
@@ -105,6 +126,11 @@ function reset_color_form(FormName){
         color: "black"
     });
 
+    $("form#"+FormName+" textarea").css({
+        background: "",
+        border: "",
+        color: "black"
+    });
 
     $("form#"+FormName+" select").each(function() {
         $(this).css({
@@ -113,6 +139,7 @@ function reset_color_form(FormName){
             color: "black"
         }); 
     });
+    
 
       
 }
