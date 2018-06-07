@@ -140,7 +140,7 @@ $(document).ready(function(){
                 data: null,
                 render: function(data, type, full, meta){
                     if(type === 'display'){
-                        data = '<div class="btn-group">'+
+                       /* data = '<div class="btn-group">'+
                                     '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Actions'+
                                         '<i class="fa fa-angle-down"></i>'+
                                     '</button>'+
@@ -154,7 +154,22 @@ $(document).ready(function(){
                                                 '<i class="icon-tag"></i>Delete</a>'+
                                         '</li>'+                                       
                                     '</ul>'+
-                                '</div>';
+                                '</div>';*/
+                         data = '<div class="dropdown">'+
+                                '<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown">Actions'+
+                                '<span class="caret"></span>'+
+                                    '</button>'+
+                                    '<ul class="dropdown-menu" role="menu">'+
+                                        '<li>'+
+                                            '<a id="anchor_update" value='+full['id']+'|'+full['nama']+'|'+full['alamat']+'|'+full['no_telp']+'|'+full['email']+'>'+
+                                                '<i class="icon-docs"></i>Update</a>'+
+                                        '</li>'+
+                                        '<li>'+
+                                            '<a id="anchor_delete" value='+full['id']+' >'+
+                                                '<i class="icon-tag"></i>Delete</a>'+
+                                        '</li>'+                                       
+                                    '</ul>'+
+                            '</div>';
                     }
 
                     return data;
