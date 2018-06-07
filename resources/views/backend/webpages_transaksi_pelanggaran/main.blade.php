@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
@@ -8,11 +7,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Transaksi</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Transaksi Pelanggaran</span>
         </li>
     </ul>
 </div>
@@ -63,38 +62,22 @@
                         </div>
                     </div>
                 </div>
-                <table class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_transaksi_pelanggaran">
+                <table  class="table table-striped table-bordered table-hover table-checkable order-column" id="dt_transaksi_pelanggaran">
                     <thead>
                         <tr>             
-                            <th>Id</th>
-                            <th>Id siswa</th>                               
-                            <th>Jenis Pelanggaran</th>
-                            <th>Ket Pelanggaran</th>
-                            <th>Jenis Pendisiplinan</th>
-                            <th>Ket Pendisiplinan</th>
-                            <th>Tgl Kejadian</th>
-                            <th>Lokasi Kejadian</th>                                                 
-                            <th>Created By</th>  
-                            <th>Created Date</th>
-                            <th>Updated Date</th> 
-                            <th>Status</th>  
-                            <th>Actions</th>       
-                            
-                            <!--
-                            <th>Id</th>
-                            <th>Id siswa</th>
-                            <th>Nama Siswa</th>                          
-                            <th>Jenis Pelanggaran</th>
-                            <th>Ket Pelanggaran</th>
-                            <th>Jenis Pendisiplinan</th>
-                            <th>Ket Pendisiplinan</th>
-                            <th>Tgl Kejadian</th>
-                            <th>Lokasi Kejadian</th>                                                 
-                            <th>Created By</th>  
-                            <th>Created Date</th>
-                            <th>Updated Date</th> 
-                            <th>Status</th>  
-                            <th>Actions</th>   -->
+                            <th style = " text-align: center;">Id</th>
+                            <th style = " text-align: center;">Id siswa</th>                               
+                            <th style = " text-align: center;">Jenis Pelanggaran</th>
+                            <th style = " text-align: center;">Ket Pelanggaran</th>
+                            <th style = " text-align: center;">Jenis Pendisiplinan</th>
+                            <th style = " text-align: center;">Ket Pendisiplinan</th>
+                            <th style = " text-align: center;">Tgl Kejadian</th>
+                            <th style = " text-align: center;">Lokasi Kejadian</th>                                                 
+                            <th style = " text-align: center;">Created By</th>  
+                            <th style = " text-align: center;">Created Date</th>
+                            <th style = " text-align: center;">Updated Date</th> 
+                            <th style = " text-align: center;">Status</th>
+                            <th>Actions</th>                                
                         </tr>
                     </thead>
                     <tbody>                                                                                                                             

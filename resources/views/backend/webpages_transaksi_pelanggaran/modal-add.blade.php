@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">A Fairly Long Modal</h4>
+                <h4 class="modal-title">Catat pelanggaran siswa</h4>
             </div>
             <div class="modal-body">
                 <form id = "frm-add-transaksi-pelanggaran" class="form-horizontal" role="form" method="POST">
@@ -12,8 +12,8 @@
                         <div class="form-group" >
                             <label class="col-md-3 control-label">Id Siswa</label>
                             <div class="col-md-5">
-                                <select id="slc2_siswa" name="slc2_siswa" class="form-control select2">
-                                    <option value="0">Pilih siswa</option>                                                  
+                                <select id="slc2_siswa" name="slc2_siswa" class="form-control select2"> 
+                                        <option></option>                                       
                                 </select>
                             </div>
                         </div>
