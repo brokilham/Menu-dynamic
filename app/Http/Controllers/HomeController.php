@@ -27,28 +27,32 @@ class HomeController extends Controller
         
         $Bimbingan =  DB::select("SELECT 
                                         COUNT(CASE
-                                            WHEN status_realisasi = '1' AND month(tgl_realisasi) = '5' THEN id
+                                            WHEN status_realisasi = '1' AND MONTH(tgl_realisasi) = MONTH(NOW()) THEN id
                                             ELSE null
                                         END) AS Realisasi_bimbingan_all_this_month,
                                         COUNT(CASE
-                                            WHEN status_realisasi = '1' AND month(tgl_realisasi) = '5' THEN id
+                                            WHEN status_realisasi = '1' AND MONTH(tgl_realisasi) = MONTH(NOW()) THEN id
                                             ELSE null
                                         END) AS Realisasi_bimbingan_all_this_week
                                     FROM
-                                        laravel_dynamic_menu.t_bimbingans");
+                                        laravel_dynamic_menu.t_bimbingans
+                                    WHERE
+                                        YEAR(tgl_realisasi) = YEAR(NOW());");
 
 
         $Pelanggaran =  DB::select("SELECT 
-                                    COUNT(CASE
-                                        WHEN MONTH(tanggal_kejadian) = '5' THEN Id
-                                        ELSE NULL
-                                    END) AS Pelangaran_all_this_month,
-                                    COUNT(CASE
-                                        WHEN MONTH(tanggal_kejadian) = '5' THEN Id
-                                        ELSE NULL
-                                    END) AS Pelanggaran_all_this_week
+                                        COUNT(CASE
+                                            WHEN MONTH(tanggal_kejadian) = MONTH(NOW()) THEN Id
+                                            ELSE NULL
+                                        END) AS Pelangaran_all_this_month,
+                                        COUNT(CASE
+                                            WHEN WEEK(tanggal_kejadian) = WEEK(NOW()) THEN Id
+                                            ELSE NULL
+                                        END) AS Pelanggaran_all_this_week
                                     FROM
-                                    laravel_dynamic_menu.t_pelanggarans;");
+                                        laravel_dynamic_menu.t_pelanggarans
+                                    WHERE
+                                        YEAR(tanggal_kejadian) = YEAR(NOW());");
         
         return view('backend.home')->with('datas',['bimbingan' => $Bimbingan,'pelanggaran' => $Pelanggaran]);
     }
@@ -103,7 +107,7 @@ class HomeController extends Controller
                                 WHEN MONTH(tanggal_kejadian) = '12' THEN Id
                                 ELSE NULL
                             END) AS des
-                        FROM laravel_dynamic_menu.t_pelanggarans WHERE YEAR(tanggal_kejadian) = '2018';");
+                        FROM laravel_dynamic_menu.t_pelanggarans WHERE YEAR(tanggal_kejadian) = YEAR(NOW());");
     
         return response()->json(['pelanggaran' =>  $pelanggaran] );
 
@@ -162,7 +166,7 @@ class HomeController extends Controller
                                     END) AS des
                                     
                                 FROM
-                                    laravel_dynamic_menu.t_bimbingans WHERE YEAR(tgl_realisasi) = '2018';");
+                                    laravel_dynamic_menu.t_bimbingans WHERE YEAR(tgl_realisasi) = YEAR(NOW());");
     
         return response()->json(['bimbingan' =>  $bimbingan] );
     }
