@@ -4,7 +4,7 @@ Login page
 ***/
 /* bg color */
 .login {
-  background-color: #5c97bd; }
+  background-color: #3b3f52; }
   .login a {
     color: #edf4f8 !important; }
 
@@ -48,12 +48,12 @@ Login page
 
 .login .content .form-control {
   border: none;
-  background-color: #6ba3c8;
-  border: 1px solid #6ba3c8;
+  background-color: #f4ffaf;
+  border: 1px solid #3b3f52;
   height: 43px;
-  color: #d9ecf9; }
+  color: #000000; }
   .login .content .form-control:focus, .login .content .form-control:active {
-    border: 1px solid #83b8db; }
+    border: 1px solid #3b3f52; }
   .login .content .form-control::-moz-placeholder {
     color: #d9ecf9;
     opacity: 1; }

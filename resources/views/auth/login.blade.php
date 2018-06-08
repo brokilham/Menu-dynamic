@@ -18,7 +18,7 @@
         <link href="{{URL::asset('/assets/backend/global/plugins/select2/css/select2-bootstrap.min.css')}}" rel="stylesheet" type="text/css" />   
         <link href="{{URL::asset('/assets/backend/global/css/components-md.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
         <link href="{{URL::asset('/assets/backend/global/css/plugins-md.min.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{URL::asset('/assets/backend/pages/css/login-2.min.css')}}" rel="stylesheet" type="text/css" />      
+        <link href="{{URL::asset('/assets/backend/pages/css/login-2.css')}}" rel="stylesheet" type="text/css" />      
         <link rel="shortcut icon" href="favicon.ico" /> 
     </head>
     <body class=" login">
