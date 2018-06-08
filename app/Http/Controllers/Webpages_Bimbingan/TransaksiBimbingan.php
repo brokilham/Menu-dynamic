@@ -7,6 +7,7 @@ use App\mstr_ket_realisasi;
 use auth;
 use DataTables;
 use Exception;
+use Carbon\Carbon;
 
 
 class TransaksiBimbingan extends Controller
@@ -45,7 +46,8 @@ class TransaksiBimbingan extends Controller
         try{
             $return =   t_bimbingan::where('id', $request->txt_id_pengajuan)->update(
                 ['status_approval' => $request->txt_status_approval,
-                'keterangan_approval_pengajuan' =>$request->txt_tolak_pengajuan]);
+                'keterangan_approval_pengajuan' =>$request->txt_tolak_pengajuan,
+                'tgl_approval'=>Carbon::now('Asia/Jakarta')->toDateTimeString()]);
             $result = ($return == 1)? "S":"F";
             $message = "-";
         }
@@ -106,7 +108,8 @@ class TransaksiBimbingan extends Controller
         try{
             $return =   t_bimbingan::where('id', $request->txt_id_pengajuan)->update(
                 ['status_realisasi' => $request->txt_status_realisasi,
-                'keterangan_realisasi' =>$request->txt_tak_terjadi_realisasi]);
+                'keterangan_realisasi' =>$request->txt_tak_terjadi_realisasi,
+                'tgl_realisasi' => Carbon::now('Asia/Jakarta')->toDateTimeString()]);
             $result = ($return == 1)? "S":"F";
             $message = "-";
         }

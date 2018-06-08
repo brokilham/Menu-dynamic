@@ -8,11 +8,11 @@
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <a href="#">Tables</a>
+            <a href="#">Bimbingan</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Datatables</span>
+            <span>Realisasi bimbingan</span>
         </li>
     </ul>
 </div>
