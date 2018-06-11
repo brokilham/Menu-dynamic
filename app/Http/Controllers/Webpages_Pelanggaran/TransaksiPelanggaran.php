@@ -42,7 +42,7 @@ class TransaksiPelanggaran extends Controller
             $t_pelanggaran->keterangan_pelanggaran = $request->txt_ket_pelanggaran;
             $t_pelanggaran->keterangan_pendisiplinan = $request->txt_ket_pendisplinan;
             $t_pelanggaran->id_siswa = $request->slc2_siswa;          
-            $t_pelanggaran->created_by =  Auth::user()->id;
+            $t_pelanggaran->created_by =  Auth::user()->email;
             $t_pelanggaran->status = "active";  
             $t_pelanggaran->save();
             

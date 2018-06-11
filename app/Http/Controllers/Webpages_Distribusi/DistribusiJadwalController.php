@@ -44,12 +44,12 @@ class DistribusiJadwalController extends Controller
         {  
             // check terlebih dahulu apa ada row dg id hari dan id guru yang tersimpan dengan status aktif
 
-            $DataExist = t_distribusi_jadwal::where('id_jadwal', $request->slc_jam)->where('id_guru', Auth::user()->id)->where('status','active')->first();
+            $DataExist = t_distribusi_jadwal::where('id_jadwal', $request->slc_jam)->where('id_guru', Auth::user()->email)->where('status','active')->first();
             if($DataExist == null){
                 $t_distribusi_jadwal = new t_distribusi_jadwal;
                 $t_distribusi_jadwal->id_jadwal = $request->slc_jam;
-                $t_distribusi_jadwal->id_guru    =  Auth::user()->id;
-                $t_distribusi_jadwal->created_by =  Auth::user()->id;
+                $t_distribusi_jadwal->id_guru    =  Auth::user()->email;
+                $t_distribusi_jadwal->created_by =  Auth::user()->email;
                 $t_distribusi_jadwal->status = "active";  
                 $t_distribusi_jadwal->save();          
                 $result = ($t_distribusi_jadwal == TRUE)? "S":"F";
@@ -57,7 +57,7 @@ class DistribusiJadwalController extends Controller
             }else{
 
                 $return =   t_distribusi_jadwal::where('id', $DataExist->id)->update(
-                    ['created_by' =>  Auth::user()->id,
+                    ['created_by' =>  Auth::user()->email,
                      'status' => 'active']
                 );
                 $result = ($return == 1)? "S":"F";
@@ -88,13 +88,13 @@ class DistribusiJadwalController extends Controller
                                                 m_jam.jam_mulai,
                                                 m_jam.jam_selesai
                                             FROM
-                                                laravel_dynamic_menu.t_distribusi_jadwals AS t_j
+                                                t_distribusi_jadwals AS t_j
                                             LEFT JOIN
                                                 mstr_jadwals AS m_j ON t_j.id_jadwal = m_j.id
                                             LEFT JOIN
                                                 mstr_jams AS m_jam ON m_j.jam = m_jam.id
                                             WHERE id_guru = :id_guru AND t_j.status = :status",
-                                            ['id_guru' => Auth::user()->id,'status' => 'active']);
+                                            ['id_guru' => Auth::user()->email,'status' => 'active']);
        
         return DataTables::of($t_distribusi_jadwal)->make(true);
     }

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Webpages_Master_Data;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\mstr_jabatan;
+
 use auth;
 use DataTables;
 use Exception;
@@ -27,7 +28,7 @@ class JabatanController extends Controller
             }
             $mstr_jabatan = new mstr_jabatan;
             $mstr_jabatan->nama = strtoupper($request->txt_name);
-            $mstr_jabatan->created_by =  Auth::user()->id;
+            $mstr_jabatan->created_by =  Auth::user()->email;
             $mstr_jabatan->status = "active";  
             $mstr_jabatan->login_as = $request->txt_login_as;
             $mstr_jabatan->login_at = $login_at; 
@@ -44,6 +45,7 @@ class JabatanController extends Controller
         return response()->json(['code' => $result, 'message' =>$message] );
     }
 
+    
     public function update(Request $request){
         try{
            

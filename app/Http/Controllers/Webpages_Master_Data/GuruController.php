@@ -34,7 +34,7 @@ class GuruController extends Controller
             $mstr_guru->alamat = $request->txt_alamat;
             $mstr_guru->no_telp = $request->txt_no_telp;
             $mstr_guru->email = $request->txt_email;
-            $mstr_guru->created_by =  Auth::user()->id;
+            $mstr_guru->created_by =  Auth::user()->email;
             $mstr_guru->status = "active";  
             $mstr_guru->save();
 

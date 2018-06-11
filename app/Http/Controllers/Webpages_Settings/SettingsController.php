@@ -37,7 +37,7 @@ class SettingsController extends Controller
            
             $mstr_privilages = new mstr_privilages;
             $mstr_privilages->name = $request->txt_name;
-            $mstr_privilages->created_by =  Auth::user()->id;
+            $mstr_privilages->created_by =  Auth::user()->email;
             //$mstr_privilages->status = $request->txt_status;
             $mstr_privilages->status = "active";  
             $mstr_privilages->save();

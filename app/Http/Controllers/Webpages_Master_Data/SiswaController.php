@@ -49,7 +49,7 @@ class SiswaController extends Controller
                 $mstr_siswa->email = $request->txt_sis_email;
                 $mstr_siswa->no_telp = $request->txt_sis_no_telp;
                 $mstr_siswa->status = "active";
-                $mstr_siswa->created_by =  Auth::user()->id;
+                $mstr_siswa->created_by =  Auth::user()->email;
                 $mstr_siswa->save();
 
                 $mstr_walimurid = new mstr_walimurid;  

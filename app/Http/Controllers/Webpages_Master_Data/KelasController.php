@@ -29,7 +29,7 @@ class KelasController extends Controller
                 $mstr_kelas = new mstr_kelas;
                 $mstr_kelas->kelas = $request->txt_kelas;
                 $mstr_kelas->ruang = strtoupper($request->txt_ruang);
-                $mstr_kelas->created_by =  Auth::user()->id;
+                $mstr_kelas->created_by =  Auth::user()->email;
                 $mstr_kelas->status = "active";  
                 $mstr_kelas->save();
                 

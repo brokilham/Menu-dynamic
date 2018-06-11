@@ -30,7 +30,7 @@ class User extends Authenticatable
 
     public function privilage_webpages()
     {
-        return $this->hasMany('App\privilage_webpages');
+        return $this->hasMany('App\privilage_webpages','user_id','email');
     }
 
     

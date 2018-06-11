@@ -50,7 +50,7 @@ class DistribusiKelasSiswaController extends Controller
                 $t_distribusi_kelas = new t_distribusi_kelas;
                 $t_distribusi_kelas->id_siswa = $request->slc_nama_siswa;
                 $t_distribusi_kelas->id_kelas = $request->slc_kelas;
-                $t_distribusi_kelas->created_by =  Auth::user()->id;
+                $t_distribusi_kelas->created_by =  Auth::user()->email;
                 $t_distribusi_kelas->status = "active";  
                 $t_distribusi_kelas->save();          
                 $result = ($t_distribusi_kelas == TRUE)? "S":"F";
@@ -58,7 +58,7 @@ class DistribusiKelasSiswaController extends Controller
             }else{
                 $return =   t_distribusi_kelas::where('id', $DataExist->id)->update(
                     ['id_kelas' => $request->slc_kelas,
-                     'created_by' =>  Auth::user()->id,
+                     'created_by' =>  Auth::user()->email,
                      'status' => 'active']
                 );
                 $result = ($return == 1)? "S":"F";

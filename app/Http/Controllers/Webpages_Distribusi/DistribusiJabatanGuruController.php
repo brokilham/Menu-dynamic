@@ -10,6 +10,7 @@ use auth;
 use DataTables;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use App\privilage_webpages;
 
 class DistribusiJabatanGuruController extends Controller
 {
@@ -41,7 +42,7 @@ class DistribusiJabatanGuruController extends Controller
                 $t_distribusi_jabatan = new t_distribusi_jabatan;
                 $t_distribusi_jabatan->id_guru = $request->slc_nama_guru;
                 $t_distribusi_jabatan->id_jabatan = $request->slc_jabatan;
-                $t_distribusi_jabatan->created_by =  Auth::user()->id;
+                $t_distribusi_jabatan->created_by =  Auth::user()->email;
                 $t_distribusi_jabatan->status = "active";  
                 $t_distribusi_jabatan->save();
                 
@@ -54,7 +55,12 @@ class DistribusiJabatanGuruController extends Controller
                      'status' => 'active']
                 );
 
-                if(( $t_distribusi_jabatan == TRUE) && ($User == 1)){
+                $hak_akses = $this->createHakAksesWeb($request->slc_nama_guru,$request->slc_jabatan);
+
+                if(( $t_distribusi_jabatan == TRUE) 
+                    && ($User == 1) 
+                    && ($hak_akses == 1 || $hak_akses == true)){
+
                     DB::commit();
                     $result = "S";
                     $message = "-";
@@ -70,7 +76,7 @@ class DistribusiJabatanGuruController extends Controller
                 
                 $t_distribusi_jabatan =   t_distribusi_jabatan::where('email', $request->$txt_id_guru_updt)->update(
                     ['id_jabatan' => $request->slc_jabatan,
-                     'created_by' =>  Auth::user()->id,
+                     'created_by' =>  Auth::user()->email,
                      'status' => 'active']
                 );
 
@@ -102,6 +108,25 @@ class DistribusiJabatanGuruController extends Controller
             $message = $list_jabatan;
        return response()->json(['code' => $result, 'message' =>$message] );
 
+    }
+
+    public function createHakAksesWeb($id_guru,$id_jabatan){
+        try{
+            if($id_jabatan == "5"){
+               $now = \Carbon\Carbon::now();      
+                //$privilage_webpages = new privilage_webpages;
+               $privilage_webpages = privilage_webpages::insert([ 
+                    ['id_main_menu' => '5','created_at' =>$now,'updated_at' =>$now,'created_by' => Auth::user()->email,'user_id' => $id_guru],
+                    ['id_main_menu' => '6','created_at' =>$now,'updated_at' =>$now,'created_by' => Auth::user()->email,'user_id' => $id_guru],
+                    ['id_main_menu' => '7','created_at' =>$now,'updated_at' =>$now,'created_by' => Auth::user()->email,'user_id' => $id_guru],
+                ]);
+                return $privilage_webpages;
+            }
+
+            return true;
+        }catch(Exception $e){
+            return false;
+        } 
     }
 
     public function update(Request $request){

@@ -30,7 +30,7 @@ class JadwalController extends Controller
                 $mstr_jadwal = new mstr_jadwal;
                 $mstr_jadwal->hari = $request->slc_hari;
                 $mstr_jadwal->jam  = $request->slc_jam;
-                $mstr_jadwal->created_by =  Auth::user()->id;
+                $mstr_jadwal->created_by =  Auth::user()->email;
                 $mstr_jadwal->status = "active";  
                 $mstr_jadwal->save();          
                 $result = ($mstr_jadwal == TRUE)? "S":"F";
@@ -38,7 +38,7 @@ class JadwalController extends Controller
             }else{
 
                 $return =   mstr_jadwal::where('id', $DataExist->id)->update(
-                    ['created_by' =>  Auth::user()->id,
+                    ['created_by' =>  Auth::user()->email,
                      'status' => 'active']
                 );
                 $result = ($return == 1)? "S":"F";

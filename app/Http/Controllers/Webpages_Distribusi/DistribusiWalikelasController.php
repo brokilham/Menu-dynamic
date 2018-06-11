@@ -42,7 +42,7 @@ class DistribusiWalikelasController extends Controller
                 $t_distribusi_walikelas->id_guru = $request->slc_nama_guru;
                 $t_distribusi_walikelas->id_jabatan = $request->txt_id_jabatan;
                 $t_distribusi_walikelas->id_kelas = $request->slc_kelas;
-                $t_distribusi_walikelas->created_by =  Auth::user()->id;
+                $t_distribusi_walikelas->created_by =  Auth::user()->email;
                 $t_distribusi_walikelas->status = "active";  
                 $t_distribusi_walikelas->save();          
                 $result = ($t_distribusi_walikelas == TRUE)? "S":"F";
@@ -50,7 +50,7 @@ class DistribusiWalikelasController extends Controller
             }else{
                 $return =   t_distribusi_walikelas::where('id', $DataExist->id)->update(
                     ['id_kelas' => $request->slc_kelas,
-                     'created_by' =>  Auth::user()->id,
+                     'created_by' =>  Auth::user()->email,
                      'status' => 'active']
                 );
                 $result = ($return == 1)? "S":"F";

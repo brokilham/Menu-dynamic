@@ -35,7 +35,7 @@ class HomeController extends Controller
                                             ELSE null
                                         END) AS Realisasi_bimbingan_all_this_week
                                     FROM
-                                        laravel_dynamic_menu.t_bimbingans
+                                        t_bimbingans
                                     WHERE
                                         YEAR(tgl_realisasi) = YEAR(NOW());");
 
@@ -50,7 +50,7 @@ class HomeController extends Controller
                                             ELSE NULL
                                         END) AS Pelanggaran_all_this_week
                                     FROM
-                                        laravel_dynamic_menu.t_pelanggarans
+                                        t_pelanggarans
                                     WHERE
                                         YEAR(tanggal_kejadian) = YEAR(NOW());");
         
@@ -107,7 +107,7 @@ class HomeController extends Controller
                                 WHEN MONTH(tanggal_kejadian) = '12' THEN Id
                                 ELSE NULL
                             END) AS des
-                        FROM laravel_dynamic_menu.t_pelanggarans WHERE YEAR(tanggal_kejadian) = YEAR(NOW());");
+                        FROM t_pelanggarans WHERE YEAR(tanggal_kejadian) = YEAR(NOW());");
     
         return response()->json(['pelanggaran' =>  $pelanggaran] );
 
@@ -166,7 +166,7 @@ class HomeController extends Controller
                                     END) AS des
                                     
                                 FROM
-                                    laravel_dynamic_menu.t_bimbingans WHERE YEAR(tgl_realisasi) = YEAR(NOW());");
+                                    t_bimbingans WHERE YEAR(tgl_realisasi) = YEAR(NOW());");
     
         return response()->json(['bimbingan' =>  $bimbingan] );
     }

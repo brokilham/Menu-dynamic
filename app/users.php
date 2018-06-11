@@ -10,9 +10,10 @@ class users extends Model
     /*protected $primaryKey = 'id';
     protected $fillable = ['id', 'created_at', 'update_at','nama','icon','route','status'];*/
 
+   
     public function privilage_webpages()
     {
-        return $this->hasMany('App\privilage_webpages');
+        return $this->hasMany('App\privilage_webpages','user_id','email');
     }
 
 }
