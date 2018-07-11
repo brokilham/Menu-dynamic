@@ -146,6 +146,7 @@ Route::group(['prefix' => 'transaksi_bimbingan'],function()
      Route::get('/main_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@index');
      Route::get('/getall_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_pengajuan_bimbingan');     
      Route::post('/set_respon_pengajuan','Webpages_Bimbingan\TransaksiBimbingan@set_respon_pengajuan');
+     
      // == end route pengajuan ===============================
     
     
@@ -155,6 +156,14 @@ Route::group(['prefix' => 'transaksi_bimbingan'],function()
     Route::get('/getall_transaksi_realisasi_keterangan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_realisasi_keterangan');     
     Route::post('/set_respon_realisasi','Webpages_Bimbingan\TransaksiBimbingan@set_respon_realisasi');
     // == end route realisasi =============================== 
+
+
+    // == begin route data history bimbingan=============================
+    Route::get('/main_data_log_bimbingan','Webpages_Bimbingan\DataPendukungBimbingan@index');
+    Route::get('/get_all_siswa_with_bimbingan_history','Webpages_Bimbingan\DataPendukungBimbingan@get_all_siswa_with_bimbingan_history');
+    Route::get('/get_detail_bimbingan_history/{IdSiswa}','Webpages_Bimbingan\DataPendukungBimbingan@get_detail_bimbingan_history');
+   
+    // == end route data history bimbingan ===============================
   
     
  });

@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class mstr_siswa extends Model
 {
+    public function t_bimbingan()
+    {
+        return $this->hasOne('App\t_bimbingan','id_siswa');   
+    }
+
     public function mstr_walimurid()
     {
         return $this->hasMany('App\mstr_walimurid');

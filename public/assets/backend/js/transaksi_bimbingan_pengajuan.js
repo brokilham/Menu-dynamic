@@ -20,8 +20,7 @@ $(document).ready(function(){
         
         ],
         scrollCollapse: true,      
-        columnDefs: [ 
-           
+        columnDefs: [            
             {
                 searchable: false,
                 orderable: false,

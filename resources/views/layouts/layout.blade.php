@@ -142,7 +142,8 @@
         <script src="{{URL::asset('/assets/backend/js/distribusi_jadwal.js')}}" type="text/javascript"></script>
         <script src="{{URL::asset('/assets/backend/js/transaksi_pelanggaran.js')}}" type="text/javascript"></script> 
         <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_pengajuan.js')}}" type="text/javascript"></script>
-        <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_realisasi.js')}}" type="text/javascript"></script>    
+        <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_realisasi.js')}}" type="text/javascript"></script>  
+        <script src="{{URL::asset('/assets/backend/js/transaksi_bimbingan_data_pendukung.js')}}" type="text/javascript"></script>      
         <script src="{{URL::asset('/assets/backend/js/global_function.js')}}" type="text/javascript"></script>    
         <!-- END PROCESS SCRIPT -->
 
