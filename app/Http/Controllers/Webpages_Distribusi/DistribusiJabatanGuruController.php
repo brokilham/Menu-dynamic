@@ -74,7 +74,7 @@ class DistribusiJabatanGuruController extends Controller
             else{
               
                 
-                $t_distribusi_jabatan =   t_distribusi_jabatan::where('email', $request->$txt_id_guru_updt)->update(
+                $t_distribusi_jabatan =   t_distribusi_jabatan::where('id_guru', $request->slc_nama_guru)->update(
                     ['id_jabatan' => $request->slc_jabatan,
                      'created_by' =>  Auth::user()->email,
                      'status' => 'active']
@@ -105,7 +105,7 @@ class DistribusiJabatanGuruController extends Controller
             $result = "E";
             $message = $e->getMessage();
         }
-            $message = $list_jabatan;
+            //$message = $list_jabatan;
        return response()->json(['code' => $result, 'message' =>$message] );
 
     }
