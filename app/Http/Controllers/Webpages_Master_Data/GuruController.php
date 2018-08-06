@@ -24,44 +24,53 @@ class GuruController extends Controller
     }
 
     public function create(Request $request){
-        DB::beginTransaction();
-        try
-        {
-   
-            $mstr_guru = new mstr_guru;
-            $mstr_guru->id = $request->txt_id;
-            $mstr_guru->nama = $request->txt_nama;
-            $mstr_guru->alamat = $request->txt_alamat;
-            $mstr_guru->no_telp = $request->txt_no_telp;
-            $mstr_guru->email = $request->txt_email;
-            $mstr_guru->created_by =  Auth::user()->email;
-            $mstr_guru->status = "active";  
-            $mstr_guru->save();
 
-            $User =  new User;
-            $User->name = $request->txt_nama;
-            $User->email = $request->txt_id;
-            $User->password = Hash::make($request->txt_id);
-            $User->login_as = "-";
-            $User->login_at = "-";
-            $User->status = "non_active";
-            $User->save();
+        $DataExist = mstr_guru::where('id', $request->txt_id)->first();
+        if($DataExist == null){
+            DB::beginTransaction();
+            try
+            {
+       
+                $mstr_guru = new mstr_guru;
+                $mstr_guru->id = $request->txt_id;
+                $mstr_guru->nama = $request->txt_nama;
+                $mstr_guru->alamat = $request->txt_alamat;
+                $mstr_guru->no_telp = $request->txt_no_telp;
+                $mstr_guru->email = $request->txt_email;
+                $mstr_guru->created_by =  Auth::user()->email;
+                $mstr_guru->status = "active";  
+                $mstr_guru->save();
+    
+                $User =  new User;
+                $User->name = $request->txt_nama;
+                $User->email = $request->txt_id;
+                $User->password = Hash::make($request->txt_id);
+                $User->login_as = "-";
+                $User->login_at = "-";
+                $User->status = "non_active";
+                $User->save();
+    
+                if(($mstr_guru == TRUE) && ($User== TRUE)){
+                    DB::commit();
+                    $result = "S";
+                    $message = "";
+                }else{
+                    DB::rollback();            
+                    $result = "F";
+                    $message = "Terjadi kesalahan saat proses penyimpanan !!!";
+                }           
+            }
+            catch(Exception $e){
+                DB::rollback();
+                $result = "E";
+                $message = $e->getMessage();
+            }
 
-            if(($mstr_guru == TRUE) && ($User== TRUE)){
-                DB::commit();
-                $result = "S";
-                $message = "";
-            }else{
-                DB::rollback();            
-                $result = "F";
-                $message = "Terjadi kesalahan saat proses penyimpanan !!!";
-            }           
-        }
-        catch(Exception $e){
-            DB::rollback();
+        }else{
             $result = "E";
-            $message = $e->getMessage();
+            $message = "ID Guru telah tersimpan sebelumnya !!";
         }
+        
             
              
         return response()->json(['code' => $result, 'message' =>$message] );
