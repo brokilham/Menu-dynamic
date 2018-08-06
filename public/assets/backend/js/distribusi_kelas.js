@@ -19,7 +19,7 @@ $(document).ready(function(){
                             DatalistSiswaRaw = JSON.stringify(data.list_siswa[i]);
                             DatalistSiswaJson = JSON.parse(DatalistSiswaRaw);
                             if(DatalistSiswaJson.t_distribusi_kelas == null || DatalistSiswaJson.t_distribusi_kelas.status == 'non_active'){
-                                $('#slc_nama_siswa').append('<option value = "'+DatalistSiswaJson.id+'">'+DatalistSiswaJson.nama+''+'</option>');                   
+                                $('#slc_nama_siswa').append('<option value = "'+DatalistSiswaJson.id+'">'+DatalistSiswaJson.id+' - '+DatalistSiswaJson.nama+''+'</option>');                   
                             }
                         }
 

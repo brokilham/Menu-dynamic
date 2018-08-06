@@ -1,5 +1,5 @@
 <!-- /.modal -->
-<div class="modal fade modal-scroll" id="modal-add-distribusi-kelas" tabindex="-1" data-replace="true">
+<div class="modal fade modal-scroll" id="modal-add-distribusi-kelas"  data-replace="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,7 +12,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Nama Siswa</label>
                                 <div class="col-md-10">
-                                    <select class="form-control" id= "slc_nama_siswa" name ="slc_nama_siswa">                 
+                                    <select class="form-control select2" id= "slc_nama_siswa" name ="slc_nama_siswa">                 
                                         <option value="">Pilih Siswa</option>
                                     </select>
                                     <!--

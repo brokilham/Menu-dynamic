@@ -119,7 +119,7 @@
         <script src="{{URL::asset('/assets/backend/pages/scripts/table-datatables-managed.min.js')}}" type="text/javascript"></script>
         <!--<script src="{{URL::asset('/assets/backend/pages/scripts/form-wizard.js')}}" type="text/javascript"></script>-->
         <script src="{{URL::asset('/assets/backend/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>  
-        <script src="{{URL::asset('/assets/backend/pages/scripts/components-select2.min.js')}}" type="text/javascript"></script>              
+        <script src="{{URL::asset('/assets/backend/pages/scripts/components-select2.js')}}" type="text/javascript"></script>              
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{URL::asset('/assets/backend/layouts/layout/scripts/layout.min.js')}}" type="text/javascript"></script>
