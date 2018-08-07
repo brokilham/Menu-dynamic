@@ -11,7 +11,8 @@ use DataTables;
 use Exception;
 use App\User;
 use Storage;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisterMail;
 class SiswaController extends Controller
 {
     public function __construct()
@@ -87,6 +88,7 @@ class SiswaController extends Controller
                 if(($mstr_siswa == TRUE) && ($mstr_walimurid == TRUE)
                 &&($UserSiswa==TRUE) && ($UserWalimurid ==TRUE)){
                     DB::commit(); 
+                    Mail::to($request->txt_Wal_email)->send(new RegisterMail($id_walimurid.$request->txt_sis_nis,$id_walimurid.$request->txt_sis_nis));
                     $result = "S";
                     $message = "-";
                 }

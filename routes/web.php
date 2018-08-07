@@ -164,6 +164,25 @@ Route::group(['prefix' => 'transaksi_bimbingan'],function()
     Route::get('/get_detail_bimbingan_history/{IdSiswa}','Webpages_Bimbingan\DataPendukungBimbingan@get_detail_bimbingan_history');
    
     // == end route data history bimbingan ===============================
+
+});
+
+
+Route::group(['prefix' => 'send_email'],function()
+{   
+    // == begin email ==      
+    Route::get('/send_email_register', 'Email\SendEmail@mail'); 
+    // == end email ==
+});
+
+
+Route::group(['prefix' => 'konfigurasi_user'],function()
+{
+    Route::get('/main_master','Webpages_Settings\KonfigurasiUserController@index');
+    Route::get('/getall_list_user','Webpages_Settings\KonfigurasiUserController@getall_list_user');
+    Route::post('/update_password','Webpages_Settings\KonfigurasiUserController@update_password');
+
+});
+    
   
     
- });
