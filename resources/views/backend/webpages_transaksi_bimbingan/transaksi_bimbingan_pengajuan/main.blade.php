@@ -34,15 +34,15 @@
                 <div class="table-toolbar">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="btn-group" style="display:none">
-                                <button id="call-modal-add-transaksi-pelanggaran" class="btn sbold green" data-toggle="modal"> Add New
+                            <div class="btn-group" style="display:">
+                                <button id="" class="btn sbold green" data-toggle="modal"> Panggil Siswa
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="btn-group pull-right">
-                                <button  style="display:none" class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                <button  style="display:" class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                     <i class="fa fa-angle-down"></i>
                                 </button>
                                 <ul class="dropdown-menu pull-right">
