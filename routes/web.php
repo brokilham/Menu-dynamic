@@ -146,7 +146,7 @@ Route::group(['prefix' => 'transaksi_bimbingan'],function()
      Route::get('/main_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@index');
      Route::get('/getall_transaksi_pengajuan_bimbingan','Webpages_Bimbingan\TransaksiBimbingan@getall_transaksi_pengajuan_bimbingan');     
      Route::post('/set_respon_pengajuan','Webpages_Bimbingan\TransaksiBimbingan@set_respon_pengajuan');
-     
+     Route::get('/export_data_bimbingan','Webpages_Distribusi\TransaksiBimbingan@export_data_bimbingan');   
      // == end route pengajuan ===============================
     
     
