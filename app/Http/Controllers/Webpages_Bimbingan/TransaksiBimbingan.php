@@ -8,6 +8,8 @@ use auth;
 use DataTables;
 use Exception;
 use Carbon\Carbon;
+use App\Http\Controllers\Export_Excel\BimbinganPengajuanExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class TransaksiBimbingan extends Controller
@@ -32,7 +34,7 @@ class TransaksiBimbingan extends Controller
              
         // note
         // jika param:
-        // ""= semua, 0 = beum direspon, 1=disetuji, 2= di tolak
+        // ""= semua, 0 = belum direspon, 1=disetuji, 2= di tolak
         if($request->param_status_approval != ""){
             $t_bimbingan = t_bimbingan::where('status_approval',  $request->param_status_approval)->where('status_realisasi', '')->where('id_guru', Auth::user()->email)->get();  
         }else{
@@ -123,6 +125,21 @@ class TransaksiBimbingan extends Controller
 
     //getall_transaksi_realisasi_bimbingan
     // == end func realisasi =============================
+    /*
+     public function download($id) 
+    {  
+        $assessment = Assessment::where('id',$id)->get();
+        Excel::create('Laravel Excel', function($excel) use ($assessment) {
 
-  
+            $excel->sheet('Excel sheet', function($sheet) use ($assessment) {
+                $sheet->loadView('contents.assessment_details')->with('assessment',$assessment);
+                $sheet->setOrientation('landscape');
+            });
+        })->export('xls');
+   }
+    */
+    public function export_data_bimbingan(){
+        return Excel::download(new BimbinganPengajuanExport, 'pengajuan.xlsx');
+       
+    }
 }
