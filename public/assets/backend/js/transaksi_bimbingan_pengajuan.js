@@ -159,8 +159,38 @@ $(document).ready(function(){
     // end tolak pengajuan section
 
     // begin setujui pengajuan section ==========================================
-        
-    $("#dt_transaksi_pengajuan_bimbingan").on("click", "#anchor_setujui", function(){        
+    
+    $("#dt_transaksi_pengajuan_bimbingan").on("click", "#anchor_setujui", function(){         
+        $("#txt_id_pengajuan").val($(this).attr('value')); 
+        $('#modal-setujui-pengajuan').modal('show');
+    });
+
+    
+    $("#btn-submit-setujui-pengajuan").click(function(){
+        $.ajax({
+            type:"post",
+            url:'./set_respon_pengajuan',
+            data:$('#frm-setujui-pengajuan-bimbingan').serialize(),
+            //data:{txt_id_pengajuan : $(this).attr('value') ,txt_status_approval : "1",txt_tolak_pengajuan : "-"},
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }, 
+            dataType: 'json',              
+            success: function(data){           
+               //alert(JSON.stringify(data));
+                if (data.code == "S"){
+                    location.reload();
+                }  
+                else{
+                    alert(data.message);                                   
+                }
+    
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        });
+    });
+
+    /*$("#dt_transaksi_pengajuan_bimbingan").on("click", "#anchor_setujui", function(){        
         $.ajax({
             type:"post",
             url:'./set_respon_pengajuan',
@@ -182,7 +212,7 @@ $(document).ready(function(){
                 alert(data.responseText);
             }
         });
-    });
+    });*/
     
     // end setujui pengajuan section ==========================================
 
