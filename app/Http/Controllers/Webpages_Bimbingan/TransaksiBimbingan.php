@@ -108,10 +108,20 @@ class TransaksiBimbingan extends Controller
     public function set_respon_realisasi(Request $request){
         
         try{
+            /*$return =   t_bimbingan::where('id', $request->txt_id_pengajuan)->update(
+                ['status_realisasi' => $request->txt_status_realisasi,
+                'keterangan_realisasi' =>$request->txt_tak_terjadi_realisasi,
+                'tgl_realisasi' => Carbon::now('Asia/Jakarta')->toDateTimeString()]);*/
+
+            // harus di tambah dengan pengecekan setujui dan tolak
+
             $return =   t_bimbingan::where('id', $request->txt_id_pengajuan)->update(
                 ['status_realisasi' => $request->txt_status_realisasi,
                 'keterangan_realisasi' =>$request->txt_tak_terjadi_realisasi,
+                'kategori_topik' => $request->slc_kategori_topik,
                 'tgl_realisasi' => Carbon::now('Asia/Jakarta')->toDateTimeString()]);
+
+                
             $result = ($return == 1)? "S":"F";
             $message = "-";
         }
