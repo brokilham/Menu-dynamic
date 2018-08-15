@@ -1,4 +1,21 @@
 $(document).ready(function(){
+
+    // begin tools button section ============================================
+    $("#btn_pengajuan_excel").click(function(){
+        $.ajax({
+            type:"GET",
+            url:'./export_data_bimbingan',
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
+            success: function(data){             
+                window.location = page;// you can use window.open also
+            },
+            error: function(data){
+                alert(data.responseText);
+            }
+        });
+    });
+    
+    // end tools button section ============================================
     
     // begin datatable section ==========================================
     var table = $("#dt_transaksi_pengajuan_bimbingan").DataTable({

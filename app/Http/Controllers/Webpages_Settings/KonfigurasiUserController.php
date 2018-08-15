@@ -22,7 +22,8 @@ class KonfigurasiUserController extends Controller
 
     public function getall_list_user(){
         
-        $User = User::where('status', 'active');
+        //$User = User::where('status', 'active');
+        $User = User::All();
 
         return DataTables::of($User)->make(true);
     }

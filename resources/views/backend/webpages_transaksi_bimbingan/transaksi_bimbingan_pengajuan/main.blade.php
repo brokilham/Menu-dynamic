@@ -55,8 +55,8 @@
                                             <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:;">
-                                            <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                        <a id ="btn_pengajuan_excel">
+                                        <i class="fa fa-file-excel-o" ></i> Export to Excel </a>
                                     </li>
                                 </ul>
                             </div>

@@ -102,7 +102,7 @@
                                     <th style='vertical-align:middle; text-align:center;'>Status Realisasi</th>
                                     <th style='vertical-align:middle; text-align:center;'>Guru BK</th>
                                     <th style='vertical-align:middle; text-align:center;'>Topik bimbingan</th>
-                                    <th style='vertical-align:middle; text-align:center;'>Respon</th>                         
+                                    <!--<!<th style='vertical-align:middle; text-align:center;'>Respon</th> -->                        
                                 </tr>
                             </thead>
                             <tbody>  
@@ -112,7 +112,6 @@
                                         <td style='vertical-align:middle; text-align:center;'>{{$t_bimbingan->tgl_realisasi}} </td>
                                         <td style='vertical-align:middle; text-align:center;'>{{$t_bimbingan->mstr_ket_realisasi->keterangan}} </td>
                                         <td style='vertical-align:middle; text-align:center;'>{{$t_bimbingan->mstr_guru->nama}} </td>
-                                        <td>{{$t_bimbingan->topik_bimbingan}} </td>
                                         <td>{{$t_bimbingan->topik_bimbingan}} </td>                              
                                     </tr>                            
                                 @endforeach                                                                                                                     
